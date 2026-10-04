@@ -412,7 +412,7 @@
     </div>
 
     <div class="wrap dims" aria-label="Key figures">
-      <div class="dim-item"><div class="dim-line"></div><div class="num">9</div><div class="cap">Projects on GitHub</div></div>
+      <div class="dim-item"><div class="dim-line"></div><div class="num" data-count>9</div><div class="cap">Projects on GitHub</div></div>
       <div class="dim-item"><div class="dim-line"></div><div class="num">184</div><div class="cap">Automated tests</div></div>
       <div class="dim-item"><div class="dim-line"></div><div class="num">103</div><div class="cap">Languages translated live</div></div>
       <div class="dim-item"><div class="dim-line"></div><div class="num">4</div><div class="cap">Platforms: Web · Win · Android · iOS</div></div>
@@ -422,7 +422,7 @@
   <section class="sec" id="projects">
     <div class="wrap">
       <div class="sec-head">
-        <div><div class="lbl">Blocks · 9 inserted</div><h2>Projects</h2></div>
+        <div><div class="lbl">Blocks · <span data-count>9</span> inserted</div><h2>Projects</h2></div>
         <p>Every project is a block on its layer. Toggle layers to filter, hover to select. The dimension above each block is its real code size on GitHub.</p>
       </div>
       <div class="chips" id="chips" role="group" aria-label="Filter projects by layer"></div>
@@ -586,28 +586,30 @@ const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ---------- project cards ---------- */
 const blocks = document.getElementById('blocks');
-blocks.innerHTML = PROJECTS.map((p,i) => {
+function renderBlocks(){ blocks.innerHTML = PROJECTS.map((p,i) => {
   const props = `<div class="props">${p.props.map(([k,v])=>`<div><div class="lbl">${esc(k)}</div><div class="v">${esc(v)}</div></div>`).join('')}</div>`;
   const stack = `<div class="stack">${p.stack.map(s=>`<span>${esc(s)}</span>`).join('')}</div>`;
   const links = [
-    p.repo ? `<a class="btn" href="${p.repo}" target="_blank" rel="noopener">Repo <span class="arr">&#8599;</span></a>` : `<span class="btn" aria-disabled="true">Private repo</span>`,
-    p.live ? `<a class="btn primary" href="${p.live}" target="_blank" rel="noopener">Live app <span class="arr">&#8599;</span></a>` : '',
+    p.repo ? `<a class="btn" href="${esc(p.repo)}" target="_blank" rel="noopener">Repo <span class="arr">&#8599;</span></a>` : `<span class="btn" aria-disabled="true">Private repo</span>`,
+    p.live ? `<a class="btn primary" href="${esc(p.live)}" target="_blank" rel="noopener">Live app <span class="arr">&#8599;</span></a>` : '',
     ...(p.extra||[]).map(([l,u])=>`<a class="btn" href="${u}" target="_blank" rel="noopener">${esc(l)} <span class="arr">&#8599;</span></a>`)
   ].join('');
   const head = `<div class="chead"><span class="lbl">BLK-${String(i+1).padStart(2,'0')} · ${esc(p.id.toUpperCase())}</span><span class="layer-tag"><i class="sw"></i>${esc(p.layer)}</span></div>`;
-  const body = `<h3>${esc(p.name)}</h3><p class="tagline">${esc(p.tagline)}</p><ul>${p.points.map(t=>`<li>${esc(t)}</li>`).join('')}</ul>`;
+  const body = `<h3>${esc(p.name)}</h3><p class="tagline">${esc(p.tagline)}</p>${p.points.length ? `<ul>${p.points.map(t=>`<li>${esc(t)}</li>`).join('')}</ul>` : ''}`;
   const inner = p.feat
     ? `<div class="inner"><div>${body}</div><div>${props}${stack}<div class="clinks">${links}</div></div></div>`
     : `${body}${props}${stack}<div class="clinks">${links}</div>`;
   return `<article class="card${p.feat?' feat':''}" id="blk-${p.id}" data-layer="${p.layer}" data-tip="${esc(p.name)}"><div class="cdim" aria-hidden="true"><span>${esc(p.dim)}</span></div>${head}${inner}</article>`;
-}).join('');
+}).join(''); }
+renderBlocks();
 
 /* ---------- layer chips ---------- */
 const chips = document.getElementById('chips');
-chips.innerHTML = `<span class="lbl" style="margin-inline-end:6px">Layers</span>` + LAYERS.map(l => {
+function renderChips(){ chips.innerHTML = `<span class="lbl" style="margin-inline-end:6px">Layers</span>` + LAYERS.map(l => {
   const n = PROJECTS.filter(p=>p.layer===l.id).length;
   return `<button class="chip" type="button" data-layer="${l.id}" aria-pressed="true"><i class="bulb"></i>${l.name} <span class="n">${n}</span></button>`;
-}).join('') + `<button class="chip" type="button" id="allchip" style="--lc:#e7ecf1"><i class="bulb"></i>ALL</button>`;
+}).join('') + `<button class="chip" type="button" id="allchip" style="--lc:#e7ecf1"><i class="bulb"></i>ALL</button>`; }
+renderChips();
 function applyLayers(){
   chips.querySelectorAll('.chip[data-layer]').forEach(c => c.setAttribute('aria-pressed', state.on.has(c.dataset.layer)));
   document.querySelectorAll('.card').forEach(c => c.hidden = !state.on.has(c.dataset.layer));
@@ -624,9 +626,13 @@ chips.addEventListener('click', e => {
 const svg = document.getElementById('net');
 const NS = 'http://www.w3.org/2000/svg';
 const order = ['ai','web','desktop','mobile'];
-const sorted = order.flatMap(l => PROJECTS.filter(p=>p.layer===l));
-const fy = {}; const step = 452/(sorted.length-1); sorted.forEach((p,i)=> fy[p.id] = 34 + i*step);
-const sy = {}; order.forEach(l => { const ys = sorted.filter(p=>p.layer===l).map(p=>fy[p.id]); sy[l] = ys.reduce((a,b)=>a+b,0)/ys.length; });
+let sorted, fy, sy;
+function computeLayout(){
+  sorted = order.flatMap(l => PROJECTS.filter(p=>p.layer===l));
+  fy = {}; const step = 452/Math.max(sorted.length-1,1); sorted.forEach((p,i)=> fy[p.id] = 34 + i*step);
+  sy = {}; order.forEach(l => { const ys = sorted.filter(p=>p.layer===l).map(p=>fy[p.id]); sy[l] = ys.length ? ys.reduce((a,b)=>a+b,0)/ys.length : 260; });
+}
+computeLayout();
 const OLT_H = 52, OLT_Y = 236, oy = OLT_Y + OLT_H/2;
 const WIDE = {vw:640, ox:20, ow:72, cx:170, sx:232, b1:312, b2:352, fx:460, fs:11.5, cw:7.1};
 const COMPACT = {vw:430, ox:4, ow:56, cx:80, sx:112, b1:150, b2:184, fx:226, fs:12.5, cw:7.7};
@@ -777,6 +783,49 @@ addEventListener('keydown', e => {
   if(document.activeElement===cmdin || e.ctrlKey || e.metaKey || e.altKey) return;
   if(e.key.length===1 && /[a-z?]/i.test(e.key) && !e.target.closest('input,textarea')){ cmdin.focus(); }
 });
+
+/* ---------- live sync with GitHub: new public repos appear automatically ---------- */
+const GH_USER = 'Ahshika', SKIP = new Set(['ahshika.github.io', 'ahshika']);
+const safeUrl = u => /^https?:\/\//i.test(u || '') ? u : '';
+const nice = n => n.replace(/[-_]+/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+function guessLayer(r){
+  const s = ((r.topics || []).join(' ') + ' ' + (r.description || '') + ' ' + r.name).toLowerCase();
+  const lang = (r.language || '').toLowerCase();
+  if(/\b(ai|ml|llm|gpt|gemini|openai|whisper|chatbot|bot|nlp|translator|vision)\b/.test(s)) return 'ai';
+  if(['dart','kotlin','swift','java'].includes(lang) || /\b(android|ios|mobile|flutter|capacitor)\b/.test(s)) return 'mobile';
+  if(['c#','c++','c','autoit','powershell'].includes(lang) || /\b(desktop|electron|windows|wpf|winforms)\b/.test(s)) return 'desktop';
+  return 'web';
+}
+function updateCounts(){
+  document.querySelectorAll('[data-count]').forEach(el => el.textContent = PROJECTS.length);
+  svg.setAttribute('aria-label', `Network diagram: Ahmed as the OLT, four skill layers as splitters, ${PROJECTS.length} projects as FAT terminals`);
+}
+async function syncGitHub(){
+  let repos = null;
+  try { const c = sessionStorage.getItem('gh-repos'); if(c) repos = JSON.parse(c); } catch(e){}
+  if(!repos){
+    try {
+      const r = await fetch(`https://api.github.com/users/${GH_USER}/repos?per_page=100&sort=created`, {headers:{Accept:'application/vnd.github+json'}});
+      if(!r.ok) return;
+      repos = (await r.json()).map(({name, html_url, description, language, topics, homepage, fork, archived, size, pushed_at}) =>
+        ({name, html_url, description, language, topics, homepage, fork, archived, size, pushed_at}));
+      try { sessionStorage.setItem('gh-repos', JSON.stringify(repos)); } catch(e){}
+    } catch(e){ return; }
+  }
+  const known = new Set();
+  PROJECTS.forEach(p => { if(p.repo) known.add(p.repo.toLowerCase()); (p.extra || []).forEach(([, u]) => known.add(u.toLowerCase())); });
+  const fresh = repos.filter(r => !r.fork && !r.archived && !SKIP.has(r.name.toLowerCase()) && !known.has(r.html_url.toLowerCase()));
+  if(!fresh.length) return;
+  fresh.forEach(r => PROJECTS.push({
+    id: 'gh-' + r.name.toLowerCase().replace(/[^a-z0-9]+/g, ''), name: nice(r.name), layer: guessLayer(r),
+    tagline: r.description || 'New project on GitHub.', points: [],
+    props: [['Language', r.language || '—'], ['Updated', (r.pushed_at || '').slice(0, 10)], ['Status', 'New']],
+    stack: (r.topics && r.topics.length) ? r.topics.slice(0, 6) : [r.language || 'Code'],
+    dim: `Repo ≈ ${r.size} KB`, repo: r.html_url, live: safeUrl(r.homepage)
+  }));
+  renderBlocks(); renderChips(); computeLayout(); netMode = ''; buildNet(); applyLayers(); updateCounts();
+}
+syncGitHub();
 </script>
 </body>
 </html>

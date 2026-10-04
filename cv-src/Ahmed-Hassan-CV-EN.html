@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ahmed Hassan Mostafa — CV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#12151a; --surface:#1a1f24; --ink:#eef1ee; --ink-soft:#a2acb0; --ink-faint:#727d82;
+    --line:#2a3036; --accent:#39d9ac; --accent-ink:#0b1210; --accent-soft:#17332c;
+    --tag-bg:#1f2620; --tag-ink:#c7d0c9; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px -10px rgba(0,0,0,.5);
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:'Inter',system-ui,-apple-system,"Segoe UI",sans-serif; -webkit-font-smoothing:antialiased; padding-inline:20px;}
+  .page{max-width:920px; margin:0 auto; padding-block: 28px 60px;}
+  header.head{display:flex; flex-wrap:wrap; align-items:flex-start; gap:20px; padding-bottom:20px; border-bottom:1px solid var(--line); margin-bottom:22px;}
+  .monogram{width:62px;height:62px;border-radius:16px; background:var(--accent-soft); color:var(--accent); display:flex;align-items:center;justify-content:center; font-family:'Fraunces',serif; font-weight:600; font-size:24px; flex:none;}
+  .id-block{flex:1 1 320px; min-width:0;}
+  .name{font-family:'Fraunces',serif; font-weight:600; font-size:clamp(28px,4vw,36px); line-height:1.05; letter-spacing:-.01em; text-wrap:balance; margin:0 0 6px;}
+  .role{color:var(--accent); font:600 15.5px/1.3 'Inter',sans-serif; margin:0 0 12px;}
+  .contact-row{display:flex; flex-wrap:wrap; gap:6px 16px; font:500 13px/1.5 'Inter',sans-serif; color:var(--ink-soft);}
+  .contact-row a{color:var(--ink-soft); text-decoration:none;}
+  .contact-row span.dot{color:var(--ink-faint);}
+  .grid{display:grid; grid-template-columns: 236px 1fr; gap:36px; margin-bottom:14px;}
+  @media (max-width:680px){.grid{grid-template-columns:1fr;}}
+  .pairs{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px;}
+  @media (max-width:680px){.pairs{grid-template-columns:1fr;}}
+  .projects-full{margin-top:14px;}
+  h2.section{font:700 11px/1 'Inter',sans-serif; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-faint); margin:0 0 12px;}
+  aside .block{margin-bottom:24px; page-break-inside:avoid;}
+  aside .block:last-child{margin-bottom:0;}
+  .skill-group{margin-bottom:11px;}
+  .skill-group:last-child{margin-bottom:0;}
+  .skill-group h3{font:600 12.5px/1.3 'Inter',sans-serif; color:var(--ink); margin:0 0 4px;}
+  .skill-group p{margin:0; font:400 12px/1.5 'Inter',sans-serif; color:var(--ink-soft);}
+  .edu-item, .lang-item{margin-bottom:10px;}
+  .edu-item:last-child, .lang-item:last-child{margin-bottom:0;}
+  .edu-item .school{font:600 13px/1.4 'Inter',sans-serif; color:var(--ink);}
+  .edu-item .deg{font:400 12px/1.5 'Inter',sans-serif; color:var(--ink-soft); margin-top:2px;}
+  .edu-item .yr{font:500 11.5px/1.5 'JetBrains Mono',monospace; color:var(--accent); margin-top:3px;}
+  .lang-item{display:flex; justify-content:space-between; gap:10px; font:500 13px/1.5 'Inter',sans-serif;}
+  .lang-item .nm{color:var(--ink);}
+  .lang-item .lv{color:var(--ink-soft); font-size:12px; text-align:right;}
+  main .summary{font:400 14px/1.55 'Inter',sans-serif; color:var(--ink-soft); max-width:64ch; margin:0 0 20px;}
+  .projects{display:flex; flex-direction:column; gap:14px;}
+  .card{background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:10px; padding:14px 18px; box-shadow:var(--shadow); page-break-inside:avoid;}
+  .card h3{font:600 15px/1.35 'Inter',sans-serif; color:var(--ink); margin:0 0 7px;}
+  .card ul{margin:0 0 9px; padding-inline-start:18px; font:400 13px/1.55 'Inter',sans-serif; color:var(--ink-soft);}
+  .card li{margin-bottom:3px;}
+  .card li:last-child{margin-bottom:0;}
+  .tags{display:flex; flex-wrap:wrap; gap:6px;}
+  .tag{font:500 11px/1 'JetBrains Mono',monospace; color:var(--tag-ink); background:var(--tag-bg); padding:5px 8px; border-radius:5px;}
+  .links{display:flex; flex-wrap:wrap; gap:4px 16px; margin-top:9px; font:500 11.5px/1.4 'JetBrains Mono',monospace;}
+  .links a{color:var(--accent); text-decoration:none;}
+  .links a:hover{text-decoration:underline;}
+  .links .private{color:var(--ink-faint);}
+  footer.note{margin-top:28px; padding-top:14px; border-top:1px solid var(--line); font:400 12px/1.6 'Inter',sans-serif; color:var(--ink-faint);}
+  @media print{
+    :root{
+      --paper:#f5f3ee; --surface:#ffffff; --ink:#191d1f; --ink-soft:#5c6570; --ink-faint:#8a9198;
+      --line:#ddd8cc; --accent:#0b7a66; --accent-ink:#ffffff; --accent-soft:#e2f0ea;
+      --tag-bg:#eef0ea; --tag-ink:#3c463f;
+    }
+    body{padding:0;}
+    .page{max-width:none; padding:0; margin:0;}
+    .card{box-shadow:none;}
+    @page{ size:A4; margin:13mm; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="head">
+    <div class="monogram">AH</div>
+    <div class="id-block">
+      <h1 class="name">Ahmed Hassan Mostafa</h1>
+      <p class="role">Full&nbsp;Stack Developer (React) &amp; AI Automation</p>
+      <div class="contact-row">
+        <span>Alexandria, Egypt</span>
+        <span class="dot">&middot;</span>
+        <a href="tel:+201212256869">+20 12 1225 6869</a>
+        <span class="dot">&middot;</span>
+        <a href="mailto:ahmedhassanshika@gmail.com">ahmedhassanshika@gmail.com</a>
+        <span class="dot">&middot;</span>
+        <a href="https://github.com/Ahshika">github.com/Ahshika</a>
+        <span class="dot">&middot;</span>
+        <a href="https://www.linkedin.com/in/ah-shika-3098623ba/">linkedin.com/in/ah-shika</a>
+        <span class="dot">&middot;</span>
+        <a href="https://ahshika.github.io">ahshika.github.io</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="grid">
+    <aside>
+      <div class="block">
+        <h2 class="section">Skills</h2>
+        <div class="skill-group"><h3>Languages</h3><p>TypeScript, JavaScript, Python, Dart, C#, Java (Android bridges)</p></div>
+        <div class="skill-group"><h3>Frontend</h3><p>React 18/19, Tailwind CSS, Vite, WebGL2</p></div>
+        <div class="skill-group"><h3>Backend</h3><p>Node.js, Express, FastAPI, REST &amp; WebSocket APIs, embedded HTTP servers</p></div>
+        <div class="skill-group"><h3>Databases</h3><p>SQLite, IndexedDB, Firebase Firestore</p></div>
+        <div class="skill-group"><h3>AI &amp; Automation</h3><p>Gemini API, faster-whisper, NLLB-200, Piper TTS, Silero VAD, CUDA, chatbots, WhatsApp/Telegram/Meta webhooks</p></div>
+        <div class="skill-group"><h3>Desktop &amp; Mobile</h3><p>Electron, Flutter (Windows/Android), Capacitor (Android/iOS)</p></div>
+        <div class="skill-group"><h3>Security &amp; Other</h3><p>AES-256, TOTP 2FA, Ed25519 licence signing, GIS &amp; georeferencing (proj4), DWG/DXF, installers (Inno Setup, NSIS), automated testing, Git</p></div>
+      </div>
+      <div class="block">
+        <h2 class="section">Education</h2>
+        <div class="edu-item">
+          <div class="school">Pharos University in Alexandria</div>
+          <div class="deg">B.Sc. Computer Engineering &mdash; 3rd Year, double&#8209;major track</div>
+          <div class="yr">In progress</div>
+        </div>
+      </div>
+      <div class="block">
+        <h2 class="section">Languages</h2>
+        <div class="lang-item"><span class="nm">Arabic</span><span class="lv">Native</span></div>
+        <div class="lang-item"><span class="nm">English</span><span class="lv">Strong reading &amp; writing, developing speaking</span></div>
+      </div>
+    </aside>
+
+    <main>
+      <h2 class="section">Profile</h2>
+      <p class="summary">Third-year Computer Engineering student, entirely self-taught, who ships complete products: full-stack web apps with React and Node.js, AI-driven automation, and offline-first desktop and mobile software. <span class="pcount">9</span> projects shipped, including a WebGL2 CAD engine for fibre-network engineers and a real-time voice translator that runs 100% on-device.</p>
+
+      <h2 class="section">Projects</h2>
+      <div class="projects">
+        <article class="card">
+          <h3>FiberLens &mdash; Smart CAD &amp; FTTH Field Engineering Platform</h3>
+          <ul>
+            <li>Offline-first CAD platform that opens and edits DWG/DXF on Android, iOS and the web, with the engineer&rsquo;s live GPS position shown inside the drawing.</li>
+            <li>Wrote a WebGL2 renderer that draws 85k entities (~550k segments) in under 1&nbsp;ms of GPU time; added fibre tracing to the OLT, splitters, georeferencing, BOQ and 10 reports. 27 unit tests.</li>
+          </ul>
+          <div class="tags"><span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">WebGL2</span><span class="tag">Capacitor</span><span class="tag">proj4</span></div>
+          <div class="links"><a href="https://github.com/Ahshika/FiberLens">github.com/Ahshika/FiberLens</a><a href="https://fiberlens.pages.dev">Live: fiberlens.pages.dev</a></div>
+        </article>
+        <article class="card">
+          <h3>AI Live Translator &mdash; Real-time Two-way Voice Translation</h3>
+          <ul>
+            <li>Fully local pipeline (VAD &rarr; Whisper &rarr; NLLB-200 &rarr; Piper) that translates both sides of a Zoom, Teams or Meet call through a virtual mic, in 103 languages.</li>
+            <li>C# helper on the Windows process-loopback API captures only the meeting&rsquo;s audio; CUDA with CPU fallback, one-click installer, 85 tests.</li>
+          </ul>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Whisper</span><span class="tag">NLLB-200</span><span class="tag">FastAPI</span><span class="tag">C#</span></div>
+          <div class="links"><a href="https://github.com/Ahshika/AI-Live-Translator">github.com/Ahshika/AI-Live-Translator</a></div>
+        </article>
+      </div>
+    </main>
+  </div>
+
+  <div class="projects projects-full">
+    <article class="card">
+      <h3>FixTrack &mdash; Phone Repair Shop &amp; POS System</h3>
+      <ul><li>One Flutter codebase for Windows and Android: repair workflow (intake &rarr; approval &rarr; warranty delivery) plus barcode POS, IMEI tracking, used-phone buying and mobile wallets.</li><li>The shop PC runs an embedded HTTP server and SQLite that phones join over Wi-Fi, offline; Firebase QR tracking, Ed25519-signed licences, 72 tests.</li></ul>
+      <div class="tags"><span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">Riverpod</span><span class="tag">SQLite</span><span class="tag">Firebase</span></div>
+      <div class="links"><a href="https://github.com/Ahshika/FixTrack">github.com/Ahshika/FixTrack</a></div>
+    </article>
+    <article class="card">
+      <h3>NightGold V3 &mdash; Password Manager &amp; File Locker</h3>
+      <ul><li>Offline Windows password manager unlocked by a TOTP code instead of a master password: AES-256 vault, Arabic-capable generator, weak/reused-password audit.</li><li>Quick Lock encrypts any file or folder in place (scrypt + AES-256) and re-locks it on Windows lock, sleep or shutdown.</li></ul>
+      <div class="tags"><span class="tag">Electron</span><span class="tag">React 19</span><span class="tag">SQLite</span><span class="tag">AES-256</span><span class="tag">TOTP</span></div>
+      <div class="links"><a href="https://github.com/Ahshika/NightGold-Password-Manager">github.com/Ahshika/NightGold-Password-Manager</a></div>
+    </article>
+    <article class="card">
+      <h3>GeoSnap Pro &mdash; GPS Camera &amp; Inspection Reports</h3>
+      <ul><li>Android inspection camera: live stamps in four templates, real EXIF GPS on every photo, drag-the-pin GPS correction.</li><li>In-app gallery, PDF inspection reports, a native Java bridge, signed and obfuscated releases.</li></ul>
+      <div class="tags"><span class="tag">Capacitor</span><span class="tag">JavaScript</span><span class="tag">Java</span><span class="tag">Leaflet</span><span class="tag">jsPDF</span></div>
+      <div class="links"><a href="https://github.com/Ahshika/GeoSnap-Pro-V2">github.com/Ahshika/GeoSnap-Pro-V2</a></div>
+    </article>
+    <div class="pairs">
+      <article class="card">
+        <h3>Password Generator V2 &mdash; NightGold V2</h3>
+        <ul><li>Generator with a live strength meter and a vault (search, favourites, categories) unlocked by TOTP paired through a QR code.</li></ul>
+        <div class="tags"><span class="tag">Electron</span><span class="tag">React 19</span><span class="tag">Tailwind</span><span class="tag">SQLite</span></div>
+        <div class="links"><a href="https://github.com/Ahshika/Password-Generator-V2">github.com/Ahshika/Password-Generator-V2</a></div>
+      </article>
+      <article class="card">
+        <h3>Password Generator V1 &mdash; NightGold V1</h3>
+        <ul><li>First version: 8&ndash;64 character passwords (optional Arabic letters) saved in an AES-256-CBC encrypted SQLite vault.</li></ul>
+        <div class="tags"><span class="tag">Electron</span><span class="tag">React</span><span class="tag">Vite</span><span class="tag">SQLite</span></div>
+        <div class="links"><a href="https://github.com/Ahshika/Password-Generator-V1">github.com/Ahshika/Password-Generator-V1</a></div>
+      </article>
+      <article class="card">
+        <h3>Wedding &amp; Event Decor AI Bot</h3>
+        <ul><li>Live webhook linking Messenger and WhatsApp Cloud API to Gemini; an Egyptian-Arabic chat that qualifies leads.</li></ul>
+        <div class="tags"><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">Gemini</span><span class="tag">Meta API</span></div>
+        <div class="links"><a href="https://github.com/Ahshika/wedding-decor-bot">github.com/Ahshika/wedding-decor-bot</a></div>
+      </article>
+      <article class="card">
+        <h3>Opti Nav &mdash; FiberSmart CAD Desktop</h3>
+        <ul><li>Desktop CAD viewer that led to FiberLens: multi-document tabs, layouts, markup, parser fallback for DWG, DXF, STEP, IGES, STL.</li></ul>
+        <div class="tags"><span class="tag">Electron</span><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Zustand</span></div>
+        <div class="links"><a href="https://github.com/Ahshika/Opti-Nav">github.com/Ahshika/Opti-Nav</a></div>
+      </article>
+    </div>
+    <!-- AUTO-PROJECTS: new GitHub repos are inserted above this line -->
+  </div>
+</div>
+</body>
+</html>

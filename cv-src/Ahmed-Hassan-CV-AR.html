@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>أحمد حسن مصطفى — السيرة الذاتية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Cairo:wght@500;700;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#12151a; --surface:#1a1f24; --ink:#eef1ee; --ink-soft:#a2acb0; --ink-faint:#727d82;
+    --line:#2a3036; --accent:#39d9ac; --accent-ink:#0b1210; --accent-soft:#17332c;
+    --tag-bg:#1f2620; --tag-ink:#c7d0c9; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px -10px rgba(0,0,0,.5);
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:'Tajawal',sans-serif; -webkit-font-smoothing:antialiased; padding-inline:20px;}
+  .page{max-width:920px; margin:0 auto; padding-block: 28px 60px;}
+  header.head{display:flex; flex-wrap:wrap; align-items:flex-start; gap:20px; padding-bottom:20px; border-bottom:1px solid var(--line); margin-bottom:22px;}
+  .monogram{width:62px;height:62px;border-radius:16px; background:var(--accent-soft); color:var(--accent); display:flex;align-items:center;justify-content:center; font-family:'Cairo',sans-serif; font-weight:900; font-size:22px; flex:none;}
+  .id-block{flex:1 1 320px; min-width:0;}
+  .name{font-family:'Cairo',sans-serif; font-weight:900; font-size:clamp(28px,4vw,36px); line-height:1.15; text-wrap:balance; margin:0 0 8px;}
+  .role{color:var(--accent); font:700 15.5px/1.4 'Tajawal',sans-serif; margin:0 0 12px;}
+  .contact-row{display:flex; flex-wrap:wrap; gap:6px 16px; font:500 13px/1.5 'Tajawal',sans-serif; color:var(--ink-soft); direction:ltr; justify-content:flex-end;}
+  .contact-row a{color:var(--ink-soft); text-decoration:none;}
+  .contact-row span.dot{color:var(--ink-faint);}
+  .grid{display:grid; grid-template-columns: 236px 1fr; gap:36px; margin-bottom:14px;}
+  @media (max-width:680px){.grid{grid-template-columns:1fr;}}
+  .pairs{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px;}
+  @media (max-width:680px){.pairs{grid-template-columns:1fr;}}
+  .projects-full{margin-top:14px;}
+  h2.section{font:700 15px/1 'Cairo',sans-serif; color:var(--ink-faint); margin:0 0 12px;}
+  aside .block{margin-bottom:24px; page-break-inside:avoid;}
+  aside .block:last-child{margin-bottom:0;}
+  .skill-group{margin-bottom:11px;}
+  .skill-group:last-child{margin-bottom:0;}
+  .skill-group h3{font:700 13px/1.3 'Cairo',sans-serif; color:var(--ink); margin:0 0 4px;}
+  .skill-group p{margin:0; font:400 12px/1.6 'Tajawal',sans-serif; color:var(--ink-soft);}
+  .edu-item, .lang-item{margin-bottom:10px;}
+  .edu-item:last-child, .lang-item:last-child{margin-bottom:0;}
+  .edu-item .school{font:700 14px/1.5 'Cairo',sans-serif; color:var(--ink);}
+  .edu-item .deg{font:400 12.5px/1.6 'Tajawal',sans-serif; color:var(--ink-soft); margin-top:3px;}
+  .edu-item .yr{font:700 12px/1.5 'Tajawal',sans-serif; color:var(--accent); margin-top:4px;}
+  .lang-item{display:flex; justify-content:space-between; gap:10px; font:500 13px/1.5 'Tajawal',sans-serif;}
+  .lang-item .nm{color:var(--ink); font-weight:700;}
+  .lang-item .lv{color:var(--ink-soft); font-size:12px; text-align:left;}
+  main .summary{font:400 14.5px/1.7 'Tajawal',sans-serif; color:var(--ink-soft); max-width:64ch; margin:0 0 20px;}
+  .projects{display:flex; flex-direction:column; gap:14px;}
+  .card{background:var(--surface); border:1px solid var(--line); border-right:3px solid var(--accent); border-radius:10px; padding:14px 18px; box-shadow:var(--shadow); page-break-inside:avoid;}
+  .card h3{font:700 15.5px/1.5 'Cairo',sans-serif; color:var(--ink); margin:0 0 6px;}
+  .card ul{margin:0 0 9px; padding-inline-start:18px; font:400 13.5px/1.7 'Tajawal',sans-serif; color:var(--ink-soft);}
+  .card li{margin-bottom:3px;}
+  .card li:last-child{margin-bottom:0;}
+  .tags{display:flex; flex-wrap:wrap; gap:6px; direction:ltr; justify-content:flex-end;}
+  .tag{font:500 11px/1 'JetBrains Mono',monospace; color:var(--tag-ink); background:var(--tag-bg); padding:5px 8px; border-radius:5px;}
+  .links{display:flex; flex-wrap:wrap; gap:4px 16px; margin-top:9px; font:500 11.5px/1.4 'JetBrains Mono',monospace; direction:ltr; justify-content:flex-end;}
+  .links a{color:var(--accent); text-decoration:none;}
+  .links a:hover{text-decoration:underline;}
+  .links .private{color:var(--ink-faint); font-family:'Tajawal',sans-serif; font-size:12.5px;}
+  footer.note{margin-top:28px; padding-top:14px; border-top:1px solid var(--line); font:400 12.5px/1.7 'Tajawal',sans-serif; color:var(--ink-faint);}
+  @media print{
+    :root{
+      --paper:#f5f3ee; --surface:#ffffff; --ink:#191d1f; --ink-soft:#5c6570; --ink-faint:#8a9198;
+      --line:#ddd8cc; --accent:#0b7a66; --accent-ink:#ffffff; --accent-soft:#e2f0ea;
+      --tag-bg:#eef0ea; --tag-ink:#3c463f;
+    }
+    body{padding:0;}
+    .page{max-width:none; padding:0; margin:0;}
+    .card{box-shadow:none;}
+    @page{ size:A4; margin:13mm; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="head">
+    <div class="monogram">أح</div>
+    <div class="id-block">
+      <h1 class="name">أحمد حسن مصطفى</h1>
+      <p class="role">مطوّر Full Stack (React) وأتمتة بالذكاء الاصطناعي</p>
+      <div class="contact-row">
+        <span>الإسكندرية، مصر</span>
+        <span class="dot">&middot;</span>
+        <a href="tel:+201212256869">+20 12 1225 6869</a>
+        <span class="dot">&middot;</span>
+        <a href="mailto:ahmedhassanshika@gmail.com">ahmedhassanshika@gmail.com</a>
+        <span class="dot">&middot;</span>
+        <a href="https://github.com/Ahshika">github.com/Ahshika</a>
+        <span class="dot">&middot;</span>
+        <a href="https://www.linkedin.com/in/ah-shika-3098623ba/">linkedin.com/in/ah-shika</a>
+        <span class="dot">&middot;</span>
+        <a href="https://ahshika.github.io">ahshika.github.io</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="grid">
+    <aside>
+      <div class="block">
+        <h2 class="section">المهارات</h2>
+        <div class="skill-group"><h3>لغات البرمجة</h3><p>TypeScript، JavaScript، Python، Dart، C#، Java (ربط أندرويد)</p></div>
+        <div class="skill-group"><h3>الواجهة الأمامية</h3><p>React 18/19، Tailwind CSS، Vite، WebGL2</p></div>
+        <div class="skill-group"><h3>الواجهة الخلفية</h3><p>Node.js، Express، FastAPI، REST وWebSocket APIs، سيرفرات HTTP مدمجة</p></div>
+        <div class="skill-group"><h3>قواعد البيانات</h3><p>SQLite، IndexedDB، Firebase Firestore</p></div>
+        <div class="skill-group"><h3>الذكاء الاصطناعي والأتمتة</h3><p>Gemini API، faster-whisper، NLLB-200، Piper TTS، Silero VAD، CUDA، شات بوتات، تكاملات WhatsApp وTelegram وMeta</p></div>
+        <div class="skill-group"><h3>سطح المكتب والموبايل</h3><p>Electron، Flutter (ويندوز/أندرويد)، Capacitor (أندرويد/iOS)</p></div>
+        <div class="skill-group"><h3>الأمان وأدوات أخرى</h3><p>تشفير AES-256، TOTP 2FA، توقيع تراخيص Ed25519، GIS والإحداثيات (proj4)، ملفات DWG/DXF، برامج تثبيت (Inno Setup، NSIS)، اختبارات آلية، Git</p></div>
+      </div>
+      <div class="block">
+        <h2 class="section">التعليم</h2>
+        <div class="edu-item">
+          <div class="school">جامعة فاروس بالإسكندرية</div>
+          <div class="deg">بكالوريوس هندسة حاسبات — الفرقة الثالثة، مسار تخصصين</div>
+          <div class="yr">قيد الدراسة</div>
+        </div>
+      </div>
+      <div class="block">
+        <h2 class="section">اللغات</h2>
+        <div class="lang-item"><span class="nm">العربية</span><span class="lv">اللغة الأم</span></div>
+        <div class="lang-item"><span class="nm">الإنجليزية</span><span class="lv">قراءة وكتابة جيدة، ومحادثة في تطور</span></div>
+      </div>
+    </aside>
+
+    <main>
+      <h2 class="section">نبذة</h2>
+      <p class="summary">طالب هندسة حاسبات بالفرقة الثالثة، اتعلّم البرمجة ذاتياً بالكامل، وبيسلّم منتجات كاملة: تطبيقات ويب متكاملة بـ React وNode.js، وأتمتة بالذكاء الاصطناعي، وبرامج سطح مكتب وموبايل بتشتغل من غير إنترنت. نفّذ <span class="pcount">9</span> مشاريع، منها محرك CAD بـ WebGL2 لمهندسي شبكات الفايبر، ومترجم صوتي فوري شغال بالكامل على الجهاز.</p>
+
+      <h2 class="section">المشاريع</h2>
+      <div class="projects">
+        <article class="card">
+          <h3>FiberLens — منصة CAD ذكية لمشاريع الفايبر FTTH</h3>
+          <ul>
+            <li>منصة CAD بتشتغل من غير إنترنت، بتفتح وتعدّل DWG/DXF على أندرويد وiOS والويب، وبتعرض موقع المهندس بالـ GPS جوه الرسمة نفسها.</li>
+            <li>محرك رسم بـ WebGL2 بيعرض 85 ألف عنصر في أقل من 1 مللي ثانية، مع تتبع الشعيرة لحد الـ OLT، والـ Splitters، ومعايرة الإحداثيات، والـ BOQ و10 تقارير. 27 اختبار.</li>
+          </ul>
+          <div class="tags"><span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">WebGL2</span><span class="tag">Capacitor</span><span class="tag">proj4</span></div>
+          <div class="links"><a href="https://github.com/Ahshika/FiberLens">github.com/Ahshika/FiberLens</a><a href="https://fiberlens.pages.dev">Live: fiberlens.pages.dev</a></div>
+        </article>
+        <article class="card">
+          <h3>المترجم الفوري — ترجمة صوتية في الاتجاهين لحظياً</h3>
+          <ul>
+            <li>ذكاء اصطناعي محلي بالكامل (Whisper ← NLLB-200 ← Piper) بيترجم الطرفين في مكالمات Zoom وTeams وMeet عن طريق مايك افتراضي، في 103 لغة.</li>
+            <li>أداة C# بتسجل صوت الاجتماع بس، مع تسريع CUDA، وبرنامج تثبيت بضغطة واحدة، و85 اختبار.</li>
+          </ul>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Whisper</span><span class="tag">NLLB-200</span><span class="tag">FastAPI</span><span class="tag">C#</span></div>
+          <div class="links"><a href="https://github.com/Ahshika/AI-Live-Translator">github.com/Ahshika/AI-Live-Translator</a></div>
+        </article>
+      </div>
+    </main>
+  </div>
+
+  <div class="projects projects-full">
+    <article class="card">
+      <h3>FixTrack — نظام إدارة محلات صيانة وبيع الموبايلات</h3>
+      <ul><li>تطبيق Flutter واحد لويندوز وأندرويد: دورة الصيانة (استلام ← موافقة ← تسليم بالضمان) وكاشير بالباركود، وتتبع IMEI، وشراء المستعمل، والمحافظ الإلكترونية.</li><li>كمبيوتر المحل سيرفر HTTP مع SQLite والموبايلات بتتصل بيه على الواي فاي من غير إنترنت، مع تتبع بالـ QR على Firebase، وتراخيص Ed25519، و72 اختبار.</li></ul>
+      <div class="tags"><span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">Riverpod</span><span class="tag">SQLite</span><span class="tag">Firebase</span></div>
+      <div class="links"><a href="https://github.com/Ahshika/FixTrack">github.com/Ahshika/FixTrack</a></div>
+    </article>
+    <article class="card">
+      <h3>NightGold V3 — مدير كلمات مرور وقفل للملفات</h3>
+      <ul><li>مدير كلمات مرور لويندوز بيتفتح بكود TOTP بدل كلمة سر رئيسية: خزنة AES-256، ومولّد بيدعم العربي، وفحص للكلمات الضعيفة والمكررة.</li><li>Quick Lock بيشفّر أي ملف أو فولدر مكانه (scrypt + AES-256) وبيقفله تاني لما ويندوز يتقفل أو ينام أو يطفي.</li></ul>
+      <div class="tags"><span class="tag">Electron</span><span class="tag">React 19</span><span class="tag">SQLite</span><span class="tag">AES-256</span><span class="tag">TOTP</span></div>
+      <div class="links"><a href="https://github.com/Ahshika/NightGold-Password-Manager">github.com/Ahshika/NightGold-Password-Manager</a></div>
+    </article>
+    <article class="card">
+      <h3>GeoSnap Pro — كاميرا GPS وتقارير معاينة</h3>
+      <ul><li>كاميرا أندرويد للمعاينات: ختم لحظي بـ 4 قوالب، وبيانات GPS حقيقية (EXIF) في كل صورة، وتصحيح الموقع بالدبوس.</li><li>جاليري داخلي، وتقارير PDF، وربط أصلي بـ Java، ونسخ إصدار موقّعة ومشفّرة.</li></ul>
+      <div class="tags"><span class="tag">Capacitor</span><span class="tag">JavaScript</span><span class="tag">Java</span><span class="tag">Leaflet</span><span class="tag">jsPDF</span></div>
+      <div class="links"><a href="https://github.com/Ahshika/GeoSnap-Pro-V2">github.com/Ahshika/GeoSnap-Pro-V2</a></div>
+    </article>
+    <div class="pairs">
+      <article class="card">
+        <h3>Password Generator V2 — الإصدار التاني من NightGold</h3>
+        <ul><li>مولّد بمقياس قوة لحظي، وخزنة (بحث، مفضلة، تصنيفات) بتتفتح بكود TOTP بيتربط بالـ QR.</li></ul>
+        <div class="tags"><span class="tag">Electron</span><span class="tag">React 19</span><span class="tag">Tailwind</span><span class="tag">SQLite</span></div>
+        <div class="links"><a href="https://github.com/Ahshika/Password-Generator-V2">github.com/Ahshika/Password-Generator-V2</a></div>
+      </article>
+      <article class="card">
+        <h3>Password Generator V1 — الإصدار الأول من NightGold</h3>
+        <ul><li>أول إصدار: كلمات مرور من 8 لـ 64 حرف (وممكن عربي) بتتحفظ في خزنة SQLite مشفّرة AES-256-CBC.</li></ul>
+        <div class="tags"><span class="tag">Electron</span><span class="tag">React</span><span class="tag">Vite</span><span class="tag">SQLite</span></div>
+        <div class="links"><a href="https://github.com/Ahshika/Password-Generator-V1">github.com/Ahshika/Password-Generator-V1</a></div>
+      </article>
+      <article class="card">
+        <h3>بوت ديكورات المناسبات بالذكاء الاصطناعي</h3>
+        <ul><li>webhook حي بيربط Messenger وWhatsApp بـ Gemini، بمحادثة بالعامية المصرية بتأهّل العملاء.</li></ul>
+        <div class="tags"><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">Gemini</span><span class="tag">Meta API</span></div>
+        <div class="links"><a href="https://github.com/Ahshika/wedding-decor-bot">github.com/Ahshika/wedding-decor-bot</a></div>
+      </article>
+      <article class="card">
+        <h3>Opti Nav — عارض CAD لسطح المكتب</h3>
+        <ul><li>عارض CAD لسطح المكتب اتطور منه FiberLens: تبويبات، وLayouts، وتعليقات، ويفتح DWG وDXF وSTEP وIGES وSTL.</li></ul>
+        <div class="tags"><span class="tag">Electron</span><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Zustand</span></div>
+        <div class="links"><a href="https://github.com/Ahshika/Opti-Nav">github.com/Ahshika/Opti-Nav</a></div>
+      </article>
+    </div>
+    <!-- AUTO-PROJECTS: new GitHub repos are inserted above this line -->
+  </div>
+</div>
+</body>
+</html>

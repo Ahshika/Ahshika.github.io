@@ -1,0 +1,50 @@
+name: Update CV with new repos
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: Re-render the PDFs even if there are no new repos
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Look for new repositories
+        id: scan
+        run: python3 tools/update_cv.py
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Render CV PDFs
+        if: steps.scan.outputs.changed == 'true' || inputs.force
+        run: |
+          for L in EN AR; do
+            google-chrome --headless=new --no-sandbox --disable-gpu --no-pdf-header-footer \
+              --run-all-compositor-stages-before-draw --virtual-time-budget=15000 \
+              --print-to-pdf="cv/Ahmed-Hassan-CV-$L.pdf" "file://$PWD/cv-src/Ahmed-Hassan-CV-$L.html"
+          done
+          ls -la cv
+
+      - name: Commit and publish
+        if: steps.scan.outputs.changed == 'true' || inputs.force
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add cv cv-src
+          git diff --cached --quiet && { echo "Nothing to commit"; exit 0; }
+          git commit -m "CV: add new GitHub projects"
+          git push
+          gh api -X POST "repos/${{ github.repository }}/pages/builds" || true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
