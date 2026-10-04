@@ -42,4 +42,4 @@ Fonts come from Google Fonts (Archivo, IBM Plex Sans, JetBrains Mono). Everythin
 ## Contact
 
 **Ahmed Hassan Mostafa** · Full-stack developer (React) & AI automation · Alexandria, Egypt
-[ahmedhassanshika@gmail.com](mailto:ahmedhassanshika655@gmail.com) · [LinkedIn](https://www.linkedin.com/in/ah-shika-3098623ba/) · [GitHub](https://github.com/Ahshika)
+[ahmedhassanshika655@gmail.com](mailto:ahmedhassanshika655@gmail.com) · [LinkedIn](https://www.linkedin.com/in/ah-shika-3098623ba/) · [GitHub](https://github.com/Ahshika)
