@@ -8,7 +8,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ahshika.github.io/">
 <meta property="og:title" content="Ahmed Hassan Mostafa — Full-stack Developer (React) & AI Automation">
-<meta property="og:description" content="Portfolio drawn as a CAD file: FiberLens, AI Live Translator, FixTrack, NightGold and more — 9 projects on GitHub.">
+<meta property="og:description" content="Portfolio drawn as a CAD file: FiberLens, AI Live Translator, Order Ly, FixTrack, NightGold and more — 10 projects on GitHub.">
 <meta property="og:image" content="https://ahshika.github.io/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -399,7 +399,7 @@
 
       <div class="viewport">
         <div class="vp-head"><span><b>MODEL</b> · FTTH TOPOLOGY OF MY WORK</span><span>HOVER A FAT · CLICK TO OPEN</span></div>
-        <div class="netwrap"><svg class="net" id="net" viewBox="0 0 640 520" role="img" aria-label="Network diagram: Ahmed as the OLT, four skill layers as splitters, nine projects as FAT terminals"></svg></div>
+        <div class="netwrap"><svg class="net" id="net" viewBox="0 0 640 520" role="img" aria-label="Network diagram: Ahmed as the OLT, four skill layers as splitters, ten projects as FAT terminals"></svg></div>
         <svg class="ucs" viewBox="0 0 44 44" aria-hidden="true"><path d="M6 38 H38 M6 38 V6" stroke="#97a5b2" stroke-width="1.4" fill="none"/><path d="M38 38 l-6 -3 v6z M6 6 l-3 6 h6z" fill="#97a5b2"/><text x="36" y="32" font-size="8" fill="#97a5b2" font-family="JetBrains Mono">X</text><text x="10" y="10" font-size="8" fill="#97a5b2" font-family="JetBrains Mono">Y</text></svg>
         <div class="legend">
           <span data-layer="ai"><i class="sw"></i>AI</span>
@@ -412,7 +412,7 @@
     </div>
 
     <div class="wrap dims" aria-label="Key figures">
-      <div class="dim-item"><div class="dim-line"></div><div class="num" data-count>9</div><div class="cap">Projects on GitHub</div></div>
+      <div class="dim-item"><div class="dim-line"></div><div class="num" data-count>10</div><div class="cap">Projects on GitHub</div></div>
       <div class="dim-item"><div class="dim-line"></div><div class="num">184</div><div class="cap">Automated tests</div></div>
       <div class="dim-item"><div class="dim-line"></div><div class="num">103</div><div class="cap">Languages translated live</div></div>
       <div class="dim-item"><div class="dim-line"></div><div class="num">4</div><div class="cap">Platforms: Web · Win · Android · iOS</div></div>
@@ -422,7 +422,7 @@
   <section class="sec" id="projects">
     <div class="wrap">
       <div class="sec-head">
-        <div><div class="lbl">Blocks · <span data-count>9</span> inserted</div><h2>Projects</h2></div>
+        <div><div class="lbl">Blocks · <span data-count>10</span> inserted</div><h2>Projects</h2></div>
         <p>Every project is a block on its layer. Toggle layers to filter, hover to select. The dimension above each block is its real code size on GitHub.</p>
       </div>
       <div class="chips" id="chips" role="group" aria-label="Filter projects by layer"></div>
@@ -471,7 +471,7 @@
           <div class="prow"><div class="k">Languages</div><div class="v">Arabic (native) · English (strong reading &amp; writing)</div></div>
         </div>
         <div class="principles">
-          <div class="pr"><div class="no">RULE 01</div><h4>Offline first</h4><p>FiberLens, FixTrack, NightGold and the translator all keep working with no internet &mdash; because field sites, shops and meetings don&rsquo;t wait for Wi-Fi.</p></div>
+          <div class="pr"><div class="no">RULE 01</div><h4>Offline first</h4><p>FiberLens, Order Ly, FixTrack, NightGold and the translator all keep working with no internet &mdash; because field sites, shops and meetings don&rsquo;t wait for Wi-Fi.</p></div>
           <div class="pr"><div class="no">RULE 02</div><h4>Ship the installer</h4><p>Inno Setup and NSIS installers, signed APKs, a live web app. A project is done when someone else can install it.</p></div>
           <div class="pr"><div class="no">RULE 03</div><h4>Test what breaks</h4><p>184 automated tests across geometry, audio pipelines and APIs &mdash; written where a bug would cost a user real money or data.</p></div>
           <div class="pr"><div class="no">RULE 04</div><h4>Arabic first</h4><p>Bilingual, right-to-left interfaces and an Egyptian-Arabic chatbot &mdash; built for the people who&rsquo;ll actually use them.</p></div>
@@ -528,9 +528,16 @@ const PROJECTS = [
    tagline:'Replaces the cashier software phone-repair shops in Egypt run today.',
    points:['Repair workflow (intake → diagnosis → customer approval → warranty delivery) plus a barcode POS, IMEI tracking, used-phone purchases and mobile wallets.',
            'The shop PC is the server: an embedded HTTP server and SQLite that the shop’s phones join over Wi-Fi, offline. Firebase for QR tracking and branches; Ed25519-signed licences.'],
-   props:[['Platform','Windows · Android'],['Tests','72'],['Status','v1.0.0']],
+   props:[['Platform','Windows · Android'],['Tests','75'],['Status','v1.0.2']],
    stack:['Flutter','Dart','Riverpod','SQLite','shelf','Firebase'],
    dim:'Dart ≈ 944 KB', repo:'https://github.com/Ahshika/FixTrack'},
+  {id:'orderly', name:'Order Ly', layer:'mobile', feat:true,
+   tagline:'Cafe customers scan the table QR, order and pay from their own phone.',
+   points:['QR web menu in Arabic and English with sizes, extras and upsell; pay by cash, card, Vodafone Cash or InstaPay with a transfer screenshot the cashier confirms; live order status, call the waiter, ask for the bill.',
+           'The cashier PC runs a self-restarting local server with SQLite, and orders reach it through Firebase Realtime Database in about a second. Bar and kitchen display, per-station ticket printing, recipe-based stock, menu-engineering reports.'],
+   props:[['Platform','Windows · Android · Web'],['Tests','46 + live E2E'],['Status','v1.0.4']],
+   stack:['Flutter','Dart','SQLite','shelf','Firebase RTDB','Firebase Hosting'],
+   dim:'Dart ≈ 720 KB', repo:'https://github.com/Ahshika/Order-Ly', live:'https://orderly-yvzug.web.app'},
   {id:'nightgold', name:'NightGold V3', layer:'desktop',
    tagline:'Password manager and file locker for Windows — no master password to forget.',
    points:['Unlocks with a 6-digit TOTP code; every secret AES-256 encrypted in a local vault; generator with Arabic letters; weak and reused password audit.',

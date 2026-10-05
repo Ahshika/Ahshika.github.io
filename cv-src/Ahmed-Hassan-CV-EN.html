@@ -66,8 +66,10 @@
     }
     body{padding:0;}
     .page{max-width:none; padding:0; margin:0;}
-    .card{box-shadow:none;}
-    @page{ size:A4; margin:13mm; }
+    .card{box-shadow:none; padding:11px 16px;}
+    .projects{gap:10px;}
+    .card ul{margin-bottom:6px; font-size:12.5px; line-height:1.45;}
+    @page{ size:A4; margin:11mm; }
   }
 </style>
 </head>
@@ -151,8 +153,14 @@
 
   <div class="projects projects-full">
     <article class="card">
+      <h3>Order Ly &mdash; Cafe POS with QR Self-Ordering</h3>
+      <ul><li>Customers scan the table QR to order and pay from their phone (wallets / InstaPay with a transfer screenshot) and track it live; Flutter app with a self-restarting local server on the cashier PC, Firebase relay, 46 tests.</li></ul>
+      <div class="tags"><span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">SQLite</span><span class="tag">Firebase</span><span class="tag">QR</span></div>
+      <div class="links"><a href="https://github.com/Ahshika/Order-Ly">github.com/Ahshika/Order-Ly</a></div>
+    </article>
+    <article class="card">
       <h3>FixTrack &mdash; Phone Repair Shop &amp; POS System</h3>
-      <ul><li>One Flutter codebase for Windows and Android: repair workflow (intake &rarr; approval &rarr; warranty delivery) plus barcode POS, IMEI tracking, used-phone buying and mobile wallets.</li><li>The shop PC runs an embedded HTTP server and SQLite that phones join over Wi-Fi, offline; Firebase QR tracking, Ed25519-signed licences, 72 tests.</li></ul>
+      <ul><li>One Flutter codebase for Windows and Android: repair workflow (intake &rarr; approval &rarr; warranty delivery) plus barcode POS, IMEI tracking, used-phone buying and mobile wallets.</li><li>The shop PC runs an embedded HTTP server and SQLite that phones join over Wi-Fi, offline; Firebase QR tracking, Ed25519-signed licences, 75 tests.</li></ul>
       <div class="tags"><span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">Riverpod</span><span class="tag">SQLite</span><span class="tag">Firebase</span></div>
       <div class="links"><a href="https://github.com/Ahshika/FixTrack">github.com/Ahshika/FixTrack</a></div>
     </article>
@@ -194,12 +202,6 @@
         <div class="links"><a href="https://github.com/Ahshika/Opti-Nav">github.com/Ahshika/Opti-Nav</a></div>
       </article>
     </div>
-    <article class="card">
-      <h3>Order Ly</h3>
-      <ul><li>Cafe POS + QR self-ordering (Flutter, Firebase)</li></ul>
-      <div class="tags"><span class="tag">Dart</span></div>
-      <div class="links"><a href="https://github.com/Ahshika/Order-Ly">github.com/Ahshika/Order-Ly</a></div>
-    </article>
     <!-- AUTO-PROJECTS: new GitHub repos are inserted above this line -->
   </div>
 </div>

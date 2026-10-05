@@ -66,8 +66,10 @@
     }
     body{padding:0;}
     .page{max-width:none; padding:0; margin:0;}
-    .card{box-shadow:none;}
-    @page{ size:A4; margin:13mm; }
+    .card{box-shadow:none; padding:11px 16px;}
+    .projects{gap:10px;}
+    .card ul{margin-bottom:6px; font-size:12.5px; line-height:1.45;}
+    @page{ size:A4; margin:11mm; }
   }
 </style>
 </head>
@@ -151,8 +153,14 @@
 
   <div class="projects projects-full">
     <article class="card">
+      <h3>Order Ly — كاشير للكافيهات وطلب بالـ QR</h3>
+      <ul><li>العميل يمسح الـ QR ويطلب ويدفع من موبايله (محافظ أو InstaPay مع صورة التحويل) ويتابع طلبه لحظياً؛ تطبيق Flutter وسيرفر محلي على كمبيوتر الكاشير بيقوم لوحده، وFirebase للطلبات، و46 اختبار.</li></ul>
+      <div class="tags"><span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">SQLite</span><span class="tag">Firebase</span><span class="tag">QR</span></div>
+      <div class="links"><a href="https://github.com/Ahshika/Order-Ly">github.com/Ahshika/Order-Ly</a></div>
+    </article>
+    <article class="card">
       <h3>FixTrack — نظام إدارة محلات صيانة وبيع الموبايلات</h3>
-      <ul><li>تطبيق Flutter واحد لويندوز وأندرويد: دورة الصيانة (استلام ← موافقة ← تسليم بالضمان) وكاشير بالباركود، وتتبع IMEI، وشراء المستعمل، والمحافظ الإلكترونية.</li><li>كمبيوتر المحل سيرفر HTTP مع SQLite والموبايلات بتتصل بيه على الواي فاي من غير إنترنت، مع تتبع بالـ QR على Firebase، وتراخيص Ed25519، و72 اختبار.</li></ul>
+      <ul><li>تطبيق Flutter واحد لويندوز وأندرويد: دورة الصيانة (استلام ← موافقة ← تسليم بالضمان) وكاشير بالباركود، وتتبع IMEI، وشراء المستعمل، والمحافظ الإلكترونية.</li><li>كمبيوتر المحل سيرفر HTTP مع SQLite والموبايلات بتتصل بيه على الواي فاي من غير إنترنت، مع تتبع بالـ QR على Firebase، وتراخيص Ed25519، و75 اختبار.</li></ul>
       <div class="tags"><span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">Riverpod</span><span class="tag">SQLite</span><span class="tag">Firebase</span></div>
       <div class="links"><a href="https://github.com/Ahshika/FixTrack">github.com/Ahshika/FixTrack</a></div>
     </article>
@@ -194,12 +202,6 @@
         <div class="links"><a href="https://github.com/Ahshika/Opti-Nav">github.com/Ahshika/Opti-Nav</a></div>
       </article>
     </div>
-    <article class="card">
-      <h3>Order Ly</h3>
-      <ul><li>Cafe POS + QR self-ordering (Flutter, Firebase)</li></ul>
-      <div class="tags"><span class="tag">Dart</span></div>
-      <div class="links"><a href="https://github.com/Ahshika/Order-Ly">github.com/Ahshika/Order-Ly</a></div>
-    </article>
     <!-- AUTO-PROJECTS: new GitHub repos are inserted above this line -->
   </div>
 </div>
