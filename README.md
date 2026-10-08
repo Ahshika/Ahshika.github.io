@@ -35,7 +35,7 @@ Every page element has a hover animation, and the layout adapts from a 320 px ph
 ## Stays up to date by itself
 
 - **Portfolio:** on every visit the page asks the GitHub API for my public repos. Any repo not already in the list becomes a new block and a new node on the network, built from the repo's description, language and topics.
-- **Test counts:** a GitHub Action (`update-stats.yml`, every 6 hours) runs `tools/count_tests.py`, which downloads every public repo and counts its automated tests: unit/integration tests in Java, Kotlin, Dart, Python, JS/TS, C#, Go and Rust, plus Grafana k6 load tests (one per k6 scenario). The results go to `stats.json`; the page uses it for each project's **Tests** value and the **Automated tests** total.
+- **Test counts:** a GitHub Action (`update-stats.yml`, every 6 hours) runs `tools/count_tests.py`, which downloads every public repo and counts its automated tests: unit/integration tests in Java, Kotlin, Dart, Python, JS/TS, C#, Go and Rust, plus Grafana k6 load tests (one per k6 scenario). The results go to `stats.json`; the page uses it for each project's **Tests** value and the **Automated tests** total, and `tools/update_cv_tests.py` writes the same numbers into both CVs (every `<span data-tests="Repo">` in `cv-src/`) and re-renders the PDFs when one changes.
 - **Platforms:** the **Platforms** figure is collected from the projects' *Platform* values, and new repos get a platform guessed from their topics, so the number stays right as projects are added.
 - **CV:** a GitHub Action runs every day at 06:00 UTC. It adds new repos to both the English and Arabic CV, re-renders the PDFs with headless Chrome and publishes them. It can also be run by hand from the **Actions** tab.
 

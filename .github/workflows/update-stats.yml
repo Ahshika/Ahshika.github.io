@@ -1,7 +1,8 @@
 name: Update test counts
 
-# Counts the automated tests (unit + Grafana k6 load tests) in every public repo
-# and publishes them in stats.json, which the portfolio page reads.
+# Counts the automated tests (unit + Grafana k6 load tests) in every public repo,
+# publishes them in stats.json (read by the portfolio page) and writes them into
+# both CVs, re-rendering the PDFs when a number changes.
 on:
   schedule:
     - cron: '30 */6 * * *'   # every 6 hours
@@ -23,12 +24,26 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Write the counts into the CVs
+        id: cv
+        run: python3 tools/update_cv_tests.py
+
+      - name: Render CV PDFs
+        if: steps.cv.outputs.cv_changed == 'true'
+        run: |
+          for L in EN AR; do
+            google-chrome --headless=new --no-sandbox --disable-gpu --no-pdf-header-footer \
+              --run-all-compositor-stages-before-draw --virtual-time-budget=15000 \
+              --print-to-pdf="cv/Ahmed-Hassan-CV-$L.pdf" "file://$PWD/cv-src/Ahmed-Hassan-CV-$L.html"
+          done
+          ls -la cv
+
       - name: Commit and publish
-        if: steps.count.outputs.changed == 'true'
+        if: steps.count.outputs.changed == 'true' || steps.cv.outputs.cv_changed == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add stats.json
+          git add stats.json cv cv-src
           git diff --cached --quiet && { echo "Nothing to commit"; exit 0; }
           git commit -m "Stats: update test counts"
           git pull --rebase
