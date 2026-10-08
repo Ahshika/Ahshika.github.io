@@ -414,9 +414,9 @@
 
     <div class="wrap dims" aria-label="Key figures">
       <div class="dim-item"><div class="dim-line"></div><div class="num" data-count>11</div><div class="cap">Projects on GitHub</div></div>
-      <div class="dim-item"><div class="dim-line"></div><div class="num">184</div><div class="cap">Automated tests</div></div>
+      <div class="dim-item"><div class="dim-line"></div><div class="num" data-stat="tests">334</div><div class="cap">Automated tests</div></div>
       <div class="dim-item"><div class="dim-line"></div><div class="num">103</div><div class="cap">Languages translated live</div></div>
-      <div class="dim-item"><div class="dim-line"></div><div class="num">4</div><div class="cap">Platforms: Web · Win · Android · iOS</div></div>
+      <div class="dim-item"><div class="dim-line"></div><div class="num" data-stat="platforms">5</div><div class="cap" data-stat="platforms-cap">Platforms: Web · Win · Android · iOS · Cloud</div></div>
     </div>
   </section>
 
@@ -515,28 +515,28 @@ const PROJECTS = [
    tagline:'Your DWG is the map — smart CAD for fibre-network field engineers.',
    points:['Opens and edits DWG/DXF on Android, iOS and the web, fully offline, with the engineer’s live GPS position drawn inside the drawing.',
            'WebGL2 renderer: 85k entities (~550k segments) in under 1 ms of GPU time. Fibre trace to the OLT, splitters, a 9-step georeferencing wizard, BOQ and 10 reports.'],
-   props:[['Platform','Android · iOS · Web'],['Tests','27 unit'],['Status','Live']],
+   props:[['Platform','Android · iOS · Web'],['Tests','38 unit'],['Status','Live']],
    stack:['TypeScript','React','WebGL2','Web Workers','Capacitor','IndexedDB','proj4'],
    dim:'TypeScript ≈ 840 KB', repo:'https://github.com/Ahshika/FiberLens', live:'https://fiberlens.pages.dev'},
   {id:'translator', name:'AI Live Translator', layer:'ai', feat:true,
    tagline:'You speak Arabic, they hear German — live, in any meeting app, 100% on your PC.',
    points:['Two-way pipeline running in parallel for both sides: Silero VAD → faster-whisper → NLLB-200 → Piper voices, across 103 languages.',
            'A C# helper on the Windows process-loopback API captures only the meeting’s audio, so there’s no echo loop. CUDA with CPU fallback, one-click installer.'],
-   props:[['Platform','Windows'],['Tests','85'],['Status','Installer']],
+   props:[['Platform','Windows'],['Tests','85 unit'],['Status','Installer']],
    stack:['Python','faster-whisper','NLLB-200','Piper','FastAPI','C# / WASAPI','CUDA'],
    dim:'Python ≈ 231 KB', repo:'https://github.com/Ahshika/AI-Live-Translator'},
   {id:'fixtrack', name:'FixTrack', layer:'mobile', feat:true,
    tagline:'Replaces the cashier software phone-repair shops in Egypt run today.',
    points:['Repair workflow (intake → diagnosis → customer approval → warranty delivery) plus a barcode POS, IMEI tracking, used-phone purchases and mobile wallets.',
            'The shop PC is the server: an embedded HTTP server and SQLite that the shop’s phones join over Wi-Fi, offline. Firebase for QR tracking and branches; Ed25519-signed licences.'],
-   props:[['Platform','Windows · Android'],['Tests','75'],['Status','v1.0.2']],
+   props:[['Platform','Windows · Android'],['Tests','102 unit · 5 load'],['Status','v1.0.2']],
    stack:['Flutter','Dart','Riverpod','SQLite','shelf','Firebase'],
    dim:'Dart ≈ 944 KB', repo:'https://github.com/Ahshika/FixTrack'},
   {id:'orderly', name:'Order Ly', layer:'mobile', feat:true,
    tagline:'Cafe customers scan the table QR, order and pay from their own phone.',
    points:['QR web menu in Arabic and English with sizes, extras and upsell; pay by cash, card, Vodafone Cash or InstaPay with a transfer screenshot the cashier confirms; live order status, call the waiter, ask for the bill.',
            'The cashier PC runs a self-restarting local server with SQLite, and orders reach it through Firebase Realtime Database in about a second. Bar and kitchen display, per-station ticket printing, recipe-based stock, menu-engineering reports.'],
-   props:[['Platform','Windows · Android · Web'],['Tests','46 + live E2E'],['Status','v1.0.4']],
+   props:[['Platform','Windows · Android · Web'],['Tests','61 unit · 2 load'],['Status','v1.0.4']],
    stack:['Flutter','Dart','SQLite','shelf','Firebase RTDB','Firebase Hosting'],
    dim:'Dart ≈ 720 KB', repo:'https://github.com/Ahshika/Order-Ly', live:'https://orderly-yvzug.web.app'},
   {id:'onebrain', name:'One Brain', layer:'games',
@@ -808,12 +808,65 @@ function guessLayer(r){
   const s = ((r.topics || []).join(' ') + ' ' + (r.description || '') + ' ' + r.name).toLowerCase();
   const lang = (r.language || '').toLowerCase();
   if(/\b(ai|ml|llm|gpt|gemini|openai|whisper|chatbot|bot|nlp|translator|vision)\b/.test(s)) return 'ai';
-  if(/(game|games|gamedev|puzzle-game)/.test(s)) return 'games';
+  if(/\b(game|games|gamedev|puzzle-game)\b/.test(s)) return 'games';
   if(['dart','kotlin','swift','java'].includes(lang) || /\b(android|ios|mobile|flutter|capacitor)\b/.test(s)) return 'mobile';
   if(['c#','c++','c','autoit','powershell'].includes(lang) || /\b(desktop|electron|windows|wpf|winforms)\b/.test(s)) return 'desktop';
   return 'web';
 }
+function guessPlatform(r){
+  const s = ((r.topics || []).join(' ') + ' ' + (r.description || '') + ' ' + r.name).toLowerCase();
+  const out = [];
+  if(/\b(web|website|pwa|react|vue|nextjs|html)\b/.test(s)) out.push('Web');
+  if(/\b(windows|desktop|electron|wpf)\b/.test(s)) out.push('Windows');
+  if(/\b(android|flutter|capacitor|mobile)\b/.test(s) || ['kotlin','java','dart'].includes((r.language || '').toLowerCase())) out.push('Android');
+  if(/\b(ios|iphone|swift)\b/.test(s)) out.push('iOS');
+  if(/\b(cloud|bot|server|api|render|serverless)\b/.test(s)) out.push('Cloud');
+  if(out.length) return out.join(' · ');
+  return {mobile:'Android', games:'Android', desktop:'Windows', web:'Web', ai:'Cloud'}[guessLayer(r)] || 'Web';
+}
+
+/* ---------- live figures: test counts come from stats.json (refreshed by a GitHub Action
+   that counts the tests in every repo), platforms are collected from the project cards ---------- */
+let STATS = null;
+const PLATFORM_ORDER = ['Web', 'Windows', 'Android', 'iOS', 'Cloud'];
+const repoKey = p => (p.repo || '').replace(/\/+$/, '').split('/').pop().toLowerCase();
+const testsLabel = t => [t.unit ? `${t.unit} unit` : '', t.load ? `${t.load} load` : ''].filter(Boolean).join(' · ');
+function applyStats(){
+  if(!STATS) return;
+  const byRepo = {};
+  Object.entries(STATS.repos).forEach(([n, t]) => byRepo[n.toLowerCase()] = t);
+  PROJECTS.forEach(p => {
+    const t = byRepo[repoKey(p)];
+    if(!t || !t.total) return;
+    const i = p.props.findIndex(([k]) => k === 'Tests');
+    const j = i >= 0 ? i : p.props.findIndex(([k]) => k === 'Language');
+    if(j >= 0) p.props[j] = ['Tests', testsLabel(t)];
+  });
+}
+function updateFigures(){
+  const set = new Set();
+  PROJECTS.forEach(p => {
+    const pr = p.props.find(([k]) => k === 'Platform');
+    if(pr) String(pr[1]).split('·').forEach(x => { x = x.trim(); if(x) set.add(x === 'Win' ? 'Windows' : x); });
+  });
+  const rank = x => { const i = PLATFORM_ORDER.indexOf(x); return i < 0 ? 99 : i; };
+  const list = [...set].sort((a, b) => rank(a) - rank(b));
+  document.querySelectorAll('[data-stat="platforms"]').forEach(el => el.textContent = list.length);
+  document.querySelectorAll('[data-stat="platforms-cap"]').forEach(el =>
+    el.textContent = 'Platforms: ' + list.map(x => x === 'Windows' ? 'Win' : x).join(' · '));
+  if(STATS) document.querySelectorAll('[data-stat="tests"]').forEach(el => el.textContent = STATS.totals.total);
+}
+async function loadStats(){
+  try {
+    const r = await fetch('stats.json', {cache: 'no-cache'});
+    if(!r.ok) return;
+    STATS = await r.json();
+  } catch(e){ return; }
+  applyStats(); renderBlocks(); applyLayers(); updateFigures();
+}
+
 function updateCounts(){
+  updateFigures();
   document.querySelectorAll('[data-count]').forEach(el => el.textContent = PROJECTS.length);
   svg.setAttribute('aria-label', `Network diagram: Ahmed as the OLT, five skill layers as splitters, ${PROJECTS.length} projects as FAT terminals`);
 }
@@ -836,13 +889,15 @@ async function syncGitHub(){
   fresh.forEach(r => PROJECTS.push({
     id: 'gh-' + r.name.toLowerCase().replace(/[^a-z0-9]+/g, ''), name: nice(r.name), layer: guessLayer(r),
     tagline: r.description || 'New project on GitHub.', points: [],
-    props: [['Language', r.language || '—'], ['Updated', (r.pushed_at || '').slice(0, 10)], ['Status', 'New']],
+    props: [['Platform', guessPlatform(r)], ['Language', r.language || '—'], ['Status', 'New']],
     stack: (r.topics && r.topics.length) ? r.topics.slice(0, 6) : [r.language || 'Code'],
     dim: `Repo ≈ ${r.size} KB`, repo: r.html_url, live: safeUrl(r.homepage)
   }));
-  renderBlocks(); renderChips(); computeLayout(); netMode = ''; buildNet(); applyLayers(); updateCounts();
+  applyStats(); renderBlocks(); renderChips(); computeLayout(); netMode = ''; buildNet(); applyLayers(); updateCounts();
 }
+updateFigures();
 syncGitHub();
+loadStats();
 </script>
 </body>
 </html>

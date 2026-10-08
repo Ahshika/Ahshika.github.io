@@ -1,0 +1,38 @@
+name: Update test counts
+
+# Counts the automated tests (unit + Grafana k6 load tests) in every public repo
+# and publishes them in stats.json, which the portfolio page reads.
+on:
+  schedule:
+    - cron: '30 */6 * * *'   # every 6 hours
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  count:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Count tests in every repo
+        id: count
+        run: python3 tools/count_tests.py
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit and publish
+        if: steps.count.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add stats.json
+          git diff --cached --quiet && { echo "Nothing to commit"; exit 0; }
+          git commit -m "Stats: update test counts"
+          git pull --rebase
+          git push
+          gh api -X POST "repos/${{ github.repository }}/pages/builds" || true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
