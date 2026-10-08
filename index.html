@@ -21,7 +21,7 @@
     --ms:#151a20; --panel:#1b2229; --panel2:#212932; --line:#2d3842; --line2:#3a4752;
     --ink:#e7ecf1; --dim:#97a5b2; --faint:#5e6c78;
     --grip:#2f7bff; --hot:#ff5148; --sel:#62c9ff; --ok:#3ddc84;
-    --ai:#f4c542; --web:#4fd1e8; --desk:#6fd38f; --mob:#ef7bd8;
+    --ai:#f4c542; --web:#4fd1e8; --desk:#6fd38f; --mob:#ef7bd8; --game:#8f84ff;
     --mono:'JetBrains Mono',ui-monospace,Consolas,monospace;
     --sans:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
     --disp:'Archivo','Arial Narrow',system-ui,sans-serif;
@@ -136,7 +136,7 @@
   .legend span{display:inline-flex; align-items:center; gap:7px}
   .sw{width:10px; height:10px; display:inline-block; background:var(--lc)}
   .ucs{position:absolute; left:12px; bottom:46px; width:44px; height:44px; pointer-events:none; opacity:.7}
-  [data-layer="ai"]{--lc:var(--ai)} [data-layer="web"]{--lc:var(--web)} [data-layer="desktop"]{--lc:var(--desk)} [data-layer="mobile"]{--lc:var(--mob)}
+  [data-layer="ai"]{--lc:var(--ai)} [data-layer="web"]{--lc:var(--web)} [data-layer="desktop"]{--lc:var(--desk)} [data-layer="mobile"]{--lc:var(--mob)} [data-layer="games"]{--lc:var(--game)}
 
   /* ---------- dimension stats ---------- */
   .dims{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px; padding-block:34px 10px}
@@ -399,20 +399,21 @@
 
       <div class="viewport">
         <div class="vp-head"><span><b>MODEL</b> · FTTH TOPOLOGY OF MY WORK</span><span>HOVER A FAT · CLICK TO OPEN</span></div>
-        <div class="netwrap"><svg class="net" id="net" viewBox="0 0 640 520" role="img" aria-label="Network diagram: Ahmed as the OLT, four skill layers as splitters, ten projects as FAT terminals"></svg></div>
+        <div class="netwrap"><svg class="net" id="net" viewBox="0 0 640 520" role="img" aria-label="Network diagram: Ahmed as the OLT, five skill layers as splitters, eleven projects as FAT terminals"></svg></div>
         <svg class="ucs" viewBox="0 0 44 44" aria-hidden="true"><path d="M6 38 H38 M6 38 V6" stroke="#97a5b2" stroke-width="1.4" fill="none"/><path d="M38 38 l-6 -3 v6z M6 6 l-3 6 h6z" fill="#97a5b2"/><text x="36" y="32" font-size="8" fill="#97a5b2" font-family="JetBrains Mono">X</text><text x="10" y="10" font-size="8" fill="#97a5b2" font-family="JetBrains Mono">Y</text></svg>
         <div class="legend">
           <span data-layer="ai"><i class="sw"></i>AI</span>
           <span data-layer="web"><i class="sw"></i>WEB</span>
           <span data-layer="desktop"><i class="sw"></i>DESKTOP</span>
           <span data-layer="mobile"><i class="sw"></i>MOBILE</span>
+          <span data-layer="games"><i class="sw"></i>MOBILE GAMES</span>
           <span style="margin-inline-start:auto;color:var(--faint)">OLT &rarr; SPLITTER &rarr; FAT</span>
         </div>
       </div>
     </div>
 
     <div class="wrap dims" aria-label="Key figures">
-      <div class="dim-item"><div class="dim-line"></div><div class="num" data-count>10</div><div class="cap">Projects on GitHub</div></div>
+      <div class="dim-item"><div class="dim-line"></div><div class="num" data-count>11</div><div class="cap">Projects on GitHub</div></div>
       <div class="dim-item"><div class="dim-line"></div><div class="num">184</div><div class="cap">Automated tests</div></div>
       <div class="dim-item"><div class="dim-line"></div><div class="num">103</div><div class="cap">Languages translated live</div></div>
       <div class="dim-item"><div class="dim-line"></div><div class="num">4</div><div class="cap">Platforms: Web · Win · Android · iOS</div></div>
@@ -422,7 +423,7 @@
   <section class="sec" id="projects">
     <div class="wrap">
       <div class="sec-head">
-        <div><div class="lbl">Blocks · <span data-count>10</span> inserted</div><h2>Projects</h2></div>
+        <div><div class="lbl">Blocks · <span data-count>11</span> inserted</div><h2>Projects</h2></div>
         <p>Every project is a block on its layer. Toggle layers to filter, hover to select. The dimension above each block is its real code size on GitHub.</p>
       </div>
       <div class="chips" id="chips" role="group" aria-label="Filter projects by layer"></div>
@@ -538,7 +539,7 @@ const PROJECTS = [
    props:[['Platform','Windows · Android · Web'],['Tests','46 + live E2E'],['Status','v1.0.4']],
    stack:['Flutter','Dart','SQLite','shelf','Firebase RTDB','Firebase Hosting'],
    dim:'Dart ≈ 720 KB', repo:'https://github.com/Ahshika/Order-Ly', live:'https://orderly-yvzug.web.app'},
-  {id:'onebrain', name:'One Brain', layer:'mobile',
+  {id:'onebrain', name:'One Brain', layer:'games',
    tagline:'A daily brain puzzle, plus an endless Challenge Path that keeps getting harder.',
    points:['The daily puzzle is generated from the date, so every player gets the same one with no server. 8 procedural puzzle types (logic, math, memory, pattern, visual, sequence, spatial, word) across 5 difficulty tiers.',
            'Stages of 10 levels that tighten the rules (fewer attempts, a clock, no hints, boss levels); after stage 10 the game creates its own themed stages. AdMob with a polite frequency cap, Play Billing 8, Arabic RTL and dark mode.'],
@@ -592,7 +593,8 @@ const LAYERS = [
   {id:'ai', name:'AI', color:'#f4c542'},
   {id:'web', name:'WEB', color:'#4fd1e8'},
   {id:'desktop', name:'DESKTOP', color:'#6fd38f'},
-  {id:'mobile', name:'MOBILE', color:'#ef7bd8'}
+  {id:'mobile', name:'MOBILE', color:'#ef7bd8'},
+  {id:'games', name:'MOBILE GAMES', color:'#8f84ff'}
 ];
 const state = {on:new Set(LAYERS.map(l=>l.id))};
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -639,7 +641,7 @@ chips.addEventListener('click', e => {
 /* ---------- FTTH network SVG ---------- */
 const svg = document.getElementById('net');
 const NS = 'http://www.w3.org/2000/svg';
-const order = ['ai','web','desktop','mobile'];
+const order = ['ai','web','desktop','mobile','games'];
 let sorted, fy, sy;
 function computeLayout(){
   sorted = order.flatMap(l => PROJECTS.filter(p=>p.layer===l));
@@ -769,7 +771,7 @@ function run(raw){
   if(!cmd) return;
   switch(cmd){
     case 'help': case '?':
-      say('Commands: <b>PROJECTS</b> · <b>LAYERS</b> · <b>ABOUT</b> · <b>CONTACT</b> · <b>OPEN</b> name · <b>LAYER</b> ai|web|desktop|mobile|all · <b>CV</b> · <b>GITHUB</b>'); break;
+      say('Commands: <b>PROJECTS</b> · <b>LAYERS</b> · <b>ABOUT</b> · <b>CONTACT</b> · <b>OPEN</b> name · <b>LAYER</b> ai|web|desktop|mobile|games|all · <b>CV</b> · <b>GITHUB</b>'); break;
     case 'projects': case 'blocks': go('projects'); say('Zoom to <b>PROJECTS</b>.'); break;
     case 'layers': case 'skills': go('layers'); say('Opened <b>LAYER PROPERTIES MANAGER</b>.'); break;
     case 'about': case 'properties': go('properties'); say('Showing <b>PROPERTIES</b>.'); break;
@@ -780,7 +782,7 @@ function run(raw){
       const l = LAYERS.find(x=>x.id===arg || x.name.toLowerCase()===arg);
       if(arg==='all'||!arg){ LAYERS.forEach(x=>state.on.add(x.id)); applyLayers(); say('All layers <b>ON</b>.'); }
       else if(l){ state.on = new Set([l.id]); applyLayers(); go('projects'); say(`Layer <b>${l.name}</b> isolated.`); }
-      else say(`No layer named "${esc(arg)}". Try ai, web, desktop, mobile.`);
+      else say(`No layer named "${esc(arg)}". Try ai, web, desktop, mobile, games.`);
       break; }
     case 'open': case 'insert': case 'zoom': {
       const p = PROJECTS.find(x => x.id.startsWith(arg.replace(/\s/g,'')) || x.name.toLowerCase().startsWith(arg));
@@ -806,13 +808,14 @@ function guessLayer(r){
   const s = ((r.topics || []).join(' ') + ' ' + (r.description || '') + ' ' + r.name).toLowerCase();
   const lang = (r.language || '').toLowerCase();
   if(/\b(ai|ml|llm|gpt|gemini|openai|whisper|chatbot|bot|nlp|translator|vision)\b/.test(s)) return 'ai';
+  if(/(game|games|gamedev|puzzle-game)/.test(s)) return 'games';
   if(['dart','kotlin','swift','java'].includes(lang) || /\b(android|ios|mobile|flutter|capacitor)\b/.test(s)) return 'mobile';
   if(['c#','c++','c','autoit','powershell'].includes(lang) || /\b(desktop|electron|windows|wpf|winforms)\b/.test(s)) return 'desktop';
   return 'web';
 }
 function updateCounts(){
   document.querySelectorAll('[data-count]').forEach(el => el.textContent = PROJECTS.length);
-  svg.setAttribute('aria-label', `Network diagram: Ahmed as the OLT, four skill layers as splitters, ${PROJECTS.length} projects as FAT terminals`);
+  svg.setAttribute('aria-label', `Network diagram: Ahmed as the OLT, five skill layers as splitters, ${PROJECTS.length} projects as FAT terminals`);
 }
 async function syncGitHub(){
   let repos = null;
