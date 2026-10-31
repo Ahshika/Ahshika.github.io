@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-25",
+  "updated": "2026-10-31",
   "totals": {
     "unit": 401,
     "load": 7,
@@ -25,6 +25,11 @@
       "unit": 104,
       "load": 5,
       "total": 109
+    },
+    "games": {
+      "unit": 0,
+      "load": 0,
+      "total": 0
     },
     "GeoSnap-Pro-V2": {
       "unit": 0,
