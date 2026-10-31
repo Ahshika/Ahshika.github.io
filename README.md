@@ -18,6 +18,7 @@ My strongest work is CAD and fibre-network software, so the portfolio is a drawi
 - **AutoCAD-style crosshair** with live X/Y coordinates in the status bar.
 - **Projects are blocks.** Hovering one shows blue selection grips and a dimension line with the project's real code size on GitHub.
 - **Layers filter the projects**, just like turning CAD layers on and off.
+- **Software only.** Games have their own portfolio at [ahshika.github.io/games](https://ahshika.github.io/games/) (linked from the menu and the `games` command).
 - **A working command line**: type `open fiberlens`, `layer ai`, `contact` or `help`.
 
 Every page element has a hover animation, and the layout adapts from a 320 px phone up to a 2560 px monitor.
@@ -27,6 +28,8 @@ Every page element has a hover animation, and the layout adapts from a 320 px ph
 | File | What it is |
 |---|---|
 | `index.html` | The whole site: one file of HTML, CSS and vanilla JavaScript, no build step |
+| `data/projects.json` | The projects shown on the page (software only) |
+| `tools/validate-portfolio.mjs` + `.github/workflows/validate.yml` | Checks every change: valid data, no game, no duplicate |
 | `cv/` | My CV as PDF, in English and Arabic |
 | `og.png` | Link-preview image for LinkedIn and other sites |
 | `cv-src/` | HTML sources of the CV, used to render the PDFs |
@@ -34,7 +37,7 @@ Every page element has a hover animation, and the layout adapts from a 320 px ph
 
 ## Stays up to date by itself
 
-- **Portfolio:** on every visit the page asks the GitHub API for my public repos. Any repo not already in the list becomes a new block and a new node on the network, built from the repo's description, language and topics.
+- **Portfolio:** the projects live in `data/projects.json`. My automation keeps it current (new releases, versions, platforms, download links) by opening pull requests here, only for projects I approved as **software**. The page no longer adds repositories by itself, so a game or an unfinished repo can never appear here.
 - **Test counts:** a GitHub Action (`update-stats.yml`, every 6 hours) runs `tools/count_tests.py`, which downloads every public repo and counts its automated tests: unit/integration tests in Java, Kotlin, Dart, Python, JS/TS, C#, Go and Rust, plus Grafana k6 load tests (one per k6 scenario). The results go to `stats.json`; the page uses it for each project's **Tests** value and the **Automated tests** total, and `tools/update_cv_tests.py` writes the same numbers into both CVs (every `<span data-tests="Repo">` in `cv-src/`) and re-renders the PDFs when one changes.
 - **Platforms:** the **Platforms** figure is collected from the projects' *Platform* values, and new repos get a platform guessed from their topics, so the number stays right as projects are added.
 - **CV:** a GitHub Action runs every day at 06:00 UTC. It adds new repos to both the English and Arabic CV, re-renders the PDFs with headless Chrome and publishes them. It can also be run by hand from the **Actions** tab.
