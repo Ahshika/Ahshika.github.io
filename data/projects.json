@@ -1,0 +1,477 @@
+{
+  "version": 1,
+  "updated": "2026-10-31T09:25:40.186Z",
+  "projects": [
+    {
+      "id": "fiberlens",
+      "name": "FiberLens",
+      "layer": "web",
+      "feat": true,
+      "tagline": "Your DWG is the map — smart CAD for fibre-network field engineers.",
+      "points": [
+        "Opens and edits DWG/DXF on Android, iOS and the web, fully offline, with the engineer’s live GPS position drawn inside the drawing.",
+        "WebGL2 renderer: 85k entities (~550k segments) in under 1 ms of GPU time. Fibre trace to the OLT, splitters, a 9-step georeferencing wizard, BOQ and 10 reports."
+      ],
+      "props": [
+        [
+          "Platform",
+          "Android · iOS · Web"
+        ],
+        [
+          "Tests",
+          "38 unit"
+        ],
+        [
+          "Status",
+          "Live"
+        ]
+      ],
+      "stack": [
+        "TypeScript",
+        "React",
+        "WebGL2",
+        "Web Workers",
+        "Capacitor",
+        "IndexedDB",
+        "proj4"
+      ],
+      "dim": "TypeScript ≈ 840 KB",
+      "repo": "https://github.com/Ahshika/FiberLens",
+      "live": "https://fiberlens.pages.dev",
+      "family": "SOFTWARE",
+      "platforms": [
+        "ANDROID",
+        "IOS",
+        "WEB"
+      ],
+      "source": "ada",
+      "version": "v1.0.0"
+    },
+    {
+      "id": "translator",
+      "name": "AI Live Translator",
+      "layer": "ai",
+      "feat": true,
+      "tagline": "You speak Arabic, they hear German — live, in any meeting app, 100% on your PC.",
+      "points": [
+        "Two-way pipeline running in parallel for both sides: Silero VAD → faster-whisper → NLLB-200 → Piper voices, across 103 languages.",
+        "A C# helper on the Windows process-loopback API captures only the meeting’s audio, so there’s no echo loop. CUDA with CPU fallback, one-click installer."
+      ],
+      "props": [
+        [
+          "Platform",
+          "Windows"
+        ],
+        [
+          "Tests",
+          "85 unit"
+        ],
+        [
+          "Status",
+          "Installer"
+        ]
+      ],
+      "stack": [
+        "Python",
+        "faster-whisper",
+        "NLLB-200",
+        "Piper",
+        "FastAPI",
+        "C# / WASAPI",
+        "CUDA"
+      ],
+      "dim": "Python ≈ 231 KB",
+      "repo": "https://github.com/Ahshika/AI-Live-Translator",
+      "family": "SOFTWARE",
+      "platforms": [
+        "WINDOWS"
+      ],
+      "source": "ada",
+      "version": "v1.0.2"
+    },
+    {
+      "id": "fixtrack",
+      "name": "FixTrack",
+      "layer": "mobile",
+      "feat": true,
+      "tagline": "Replaces the cashier software phone-repair shops in Egypt run today.",
+      "points": [
+        "Repair workflow (intake → diagnosis → customer approval → warranty delivery) plus a barcode POS, IMEI tracking, used-phone purchases and mobile wallets.",
+        "The shop PC is the server: an embedded HTTP server and SQLite that the shop’s phones join over Wi-Fi, offline. Firebase for QR tracking and branches; Ed25519-signed licences."
+      ],
+      "props": [
+        [
+          "Platform",
+          "Windows · Android"
+        ],
+        [
+          "Tests",
+          "102 unit · 5 load"
+        ],
+        [
+          "Status",
+          "V1.0.5"
+        ]
+      ],
+      "stack": [
+        "Flutter",
+        "Dart",
+        "Riverpod",
+        "SQLite",
+        "shelf",
+        "Firebase"
+      ],
+      "dim": "Dart ≈ 944 KB",
+      "repo": "https://github.com/Ahshika/FixTrack",
+      "family": "SOFTWARE",
+      "platforms": [
+        "WINDOWS",
+        "ANDROID"
+      ],
+      "source": "ada",
+      "version": "V1.0.5",
+      "downloads": [
+        {
+          "label": "Android (APK)",
+          "url": "https://github.com/Ahshika/FixTrack/releases/download/V1.0.5/FixTrack-1.0.5-.apk"
+        },
+        {
+          "label": "Windows (EXE)",
+          "url": "https://github.com/Ahshika/FixTrack/releases/download/V1.0.5/FixTrack-Setup-1.0.5.exe"
+        }
+      ]
+    },
+    {
+      "id": "orderly",
+      "name": "Order Ly",
+      "layer": "mobile",
+      "feat": true,
+      "tagline": "Cafe customers scan the table QR, order and pay from their own phone.",
+      "points": [
+        "QR web menu in Arabic and English with sizes, extras and upsell; pay by cash, card, Vodafone Cash or InstaPay with a transfer screenshot the cashier confirms; live order status, call the waiter, ask for the bill.",
+        "The cashier PC runs a self-restarting local server with SQLite, and orders reach it through Firebase Realtime Database in about a second. Bar and kitchen display, per-station ticket printing, recipe-based stock, menu-engineering reports."
+      ],
+      "props": [
+        [
+          "Platform",
+          "Windows · Android · Web"
+        ],
+        [
+          "Tests",
+          "61 unit · 2 load"
+        ],
+        [
+          "Status",
+          "V1.0.7"
+        ]
+      ],
+      "stack": [
+        "Flutter",
+        "Dart",
+        "SQLite",
+        "shelf",
+        "Firebase RTDB",
+        "Firebase Hosting"
+      ],
+      "dim": "Dart ≈ 720 KB",
+      "repo": "https://github.com/Ahshika/Order-Ly",
+      "live": "https://orderly-yvzug.web.app",
+      "family": "SOFTWARE",
+      "platforms": [
+        "WINDOWS",
+        "ANDROID",
+        "WEB"
+      ],
+      "source": "ada",
+      "version": "V1.0.7",
+      "downloads": [
+        {
+          "label": "Android (APK)",
+          "url": "https://github.com/Ahshika/Order-Ly/releases/download/V1.0.7/OrderLy-1.0.7-.apk"
+        },
+        {
+          "label": "Windows (EXE)",
+          "url": "https://github.com/Ahshika/Order-Ly/releases/download/V1.0.7/OrderLy-Setup-1.0.7.exe"
+        }
+      ]
+    },
+    {
+      "id": "nightgold",
+      "name": "NightGold V3",
+      "layer": "desktop",
+      "tagline": "Password manager and file locker for Windows — no master password to forget.",
+      "points": [
+        "Unlocks with a 6-digit TOTP code; every secret AES-256 encrypted in a local vault; generator with Arabic letters; weak and reused password audit.",
+        "Quick Lock turns any file or folder into an encrypted .ngLock in place and re-locks it on Windows lock, sleep or shutdown."
+      ],
+      "props": [
+        [
+          "Platform",
+          "Windows"
+        ],
+        [
+          "Crypto",
+          "AES-256"
+        ],
+        [
+          "Status",
+          "v3 (V1→V3)"
+        ]
+      ],
+      "stack": [
+        "Electron",
+        "React 19",
+        "SQLite",
+        "scrypt",
+        "TOTP"
+      ],
+      "dim": "JavaScript ≈ 127 KB",
+      "repo": "https://github.com/Ahshika/NightGold-Password-Manager",
+      "family": "SOFTWARE",
+      "platforms": [
+        "WINDOWS"
+      ],
+      "source": "ada",
+      "version": "v3.0.0"
+    },
+    {
+      "id": "pgv2",
+      "name": "Password Generator V2",
+      "layer": "desktop",
+      "tagline": "NightGold V2 — where the generator grew into a password manager.",
+      "points": [
+        "Password generator with a live strength meter, plus a saved-credentials vault with search, favourites and categories.",
+        "Vault unlocked by a TOTP code paired through a QR code; Arabic / English interface with i18next; packaged as a Windows installer."
+      ],
+      "props": [
+        [
+          "Platform",
+          "Windows"
+        ],
+        [
+          "2FA",
+          "TOTP + QR"
+        ],
+        [
+          "Status",
+          "V2"
+        ]
+      ],
+      "stack": [
+        "Electron",
+        "React 19",
+        "Tailwind",
+        "SQLite",
+        "Speakeasy",
+        "i18next"
+      ],
+      "dim": "JavaScript ≈ 84 KB",
+      "repo": "https://github.com/Ahshika/Password-Generator-V2",
+      "family": "SOFTWARE",
+      "platforms": [
+        "WINDOWS"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "pgv1",
+      "name": "Password Generator V1",
+      "layer": "desktop",
+      "tagline": "Where NightGold started: a customizable password generator with a local vault.",
+      "points": [
+        "Generates 8–64 character passwords with upper case, numbers, symbols and optional Arabic letters; one-click copy.",
+        "Saves site, username and password in an AES-256-CBC encrypted SQLite vault unlocked by an authenticator code; Arabic RTL and English."
+      ],
+      "props": [
+        [
+          "Platform",
+          "Windows"
+        ],
+        [
+          "Crypto",
+          "AES-256-CBC"
+        ],
+        [
+          "Status",
+          "V1"
+        ]
+      ],
+      "stack": [
+        "Electron",
+        "React",
+        "Vite",
+        "Tailwind",
+        "SQLite",
+        "i18next"
+      ],
+      "dim": "JavaScript ≈ 21 KB",
+      "repo": "https://github.com/Ahshika/Password-Generator-V1",
+      "family": "SOFTWARE",
+      "platforms": [
+        "WINDOWS"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "geosnap",
+      "name": "GeoSnap Pro",
+      "layer": "mobile",
+      "tagline": "A GPS camera built for site inspections.",
+      "points": [
+        "Live watermark in four stamp templates, real EXIF GPS on every photo, and drag-the-pin correction for GPS drift.",
+        "In-app gallery, PDF inspection reports, a native Java bridge, obfuscated and signed release builds."
+      ],
+      "props": [
+        [
+          "Platform",
+          "Android"
+        ],
+        [
+          "Stamps",
+          "4 templates"
+        ],
+        [
+          "Status",
+          "V2.0.0"
+        ]
+      ],
+      "stack": [
+        "Capacitor",
+        "JavaScript",
+        "Java",
+        "Leaflet",
+        "piexif",
+        "jsPDF"
+      ],
+      "dim": "JavaScript ≈ 80 KB",
+      "repo": "https://github.com/Ahshika/GeoSnap-Pro-V2",
+      "family": "SOFTWARE",
+      "platforms": [
+        "ANDROID"
+      ],
+      "source": "ada",
+      "version": "V2.0.0",
+      "downloads": [
+        {
+          "label": "Android (APK)",
+          "url": "https://github.com/Ahshika/GeoSnap-Pro-V2/releases/download/V2.0.0/GeoSnapPro-V2-release.apk"
+        }
+      ]
+    },
+    {
+      "id": "wedding",
+      "name": "Wedding Decor Bot",
+      "layer": "ai",
+      "tagline": "A Messenger and WhatsApp sales assistant that speaks Egyptian Arabic.",
+      "points": [
+        "Express webhook connecting Messenger and the WhatsApp Cloud API to Google Gemini.",
+        "Qualifies leads by asking for event type, venue and date; deployed on Render."
+      ],
+      "props": [
+        [
+          "Platform",
+          "Cloud"
+        ],
+        [
+          "Channels",
+          "2"
+        ],
+        [
+          "Status",
+          "Live"
+        ]
+      ],
+      "stack": [
+        "Node.js",
+        "Express",
+        "Gemini API",
+        "Meta Graph API"
+      ],
+      "dim": "JavaScript ≈ 10 KB",
+      "repo": "https://github.com/Ahshika/wedding-decor-bot",
+      "family": "SOFTWARE",
+      "platforms": [],
+      "source": "manual"
+    },
+    {
+      "id": "optinav",
+      "name": "Opti Nav",
+      "layer": "desktop",
+      "tagline": "The desktop CAD viewer that became FiberLens.",
+      "points": [
+        "Multi-document tabs, model and paper-space layouts, markup tools.",
+        "A parser registry that retries across engines to open DWG, DXF, STEP, IGES and STL."
+      ],
+      "props": [
+        [
+          "Platform",
+          "Windows"
+        ],
+        [
+          "Formats",
+          "5"
+        ],
+        [
+          "Status",
+          "Prototype"
+        ]
+      ],
+      "stack": [
+        "Electron",
+        "React",
+        "TypeScript",
+        "Zustand",
+        "Leaflet"
+      ],
+      "dim": "TypeScript ≈ 240 KB",
+      "repo": "https://github.com/Ahshika/Opti-Nav",
+      "family": "SOFTWARE",
+      "platforms": [
+        "WINDOWS"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "basket",
+      "name": "Basket",
+      "layer": "mobile",
+      "tagline": "Supermarket & grocery POS for Windows + Android: scale barcodes, expiry dates (FEFO), multiple cashiers, delivery orders (Flutter, offline-first, LAN server)",
+      "points": [],
+      "props": [
+        [
+          "Platform",
+          "Windows · Android"
+        ],
+        [
+          "Status",
+          "V1.0.0"
+        ]
+      ],
+      "stack": [
+        "Dart",
+        "Flutter",
+        "Riverpod",
+        "shelf"
+      ],
+      "dim": "Dart",
+      "repo": "https://github.com/Ahshika/Basket",
+      "family": "SOFTWARE",
+      "platforms": [
+        "WINDOWS",
+        "ANDROID"
+      ],
+      "version": "V1.0.0",
+      "downloads": [
+        {
+          "label": "Android (APK)",
+          "url": "https://github.com/Ahshika/Basket/releases/download/V1.0.0/Basket-1.0.0-.apk"
+        },
+        {
+          "label": "Windows (EXE)",
+          "url": "https://github.com/Ahshika/Basket/releases/download/V1.0.0/Basket-Setup-1.0.0.exe"
+        }
+      ],
+      "source": "ada"
+    }
+  ]
+}

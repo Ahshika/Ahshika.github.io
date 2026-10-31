@@ -21,7 +21,7 @@
     --ms:#151a20; --panel:#1b2229; --panel2:#212932; --line:#2d3842; --line2:#3a4752;
     --ink:#e7ecf1; --dim:#97a5b2; --faint:#5e6c78;
     --grip:#2f7bff; --hot:#ff5148; --sel:#62c9ff; --ok:#3ddc84;
-    --ai:#f4c542; --web:#4fd1e8; --desk:#6fd38f; --mob:#ef7bd8; --game:#8f84ff;
+    --ai:#f4c542; --web:#4fd1e8; --desk:#6fd38f; --mob:#ef7bd8;
     --mono:'JetBrains Mono',ui-monospace,Consolas,monospace;
     --sans:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
     --disp:'Archivo','Arial Narrow',system-ui,sans-serif;
@@ -134,9 +134,10 @@
   .net .spl:hover polygon{fill:currentColor}
   .legend{display:flex; flex-wrap:wrap; gap:6px 16px; padding:10px 12px; border-top:1px solid var(--line); font:500 11px var(--mono); color:var(--dim)}
   .legend span{display:inline-flex; align-items:center; gap:7px}
+  .loaderr{color:var(--dim); font:500 13px var(--mono); padding:24px 0}
   .sw{width:10px; height:10px; display:inline-block; background:var(--lc)}
   .ucs{position:absolute; left:12px; bottom:46px; width:44px; height:44px; pointer-events:none; opacity:.7}
-  [data-layer="ai"]{--lc:var(--ai)} [data-layer="web"]{--lc:var(--web)} [data-layer="desktop"]{--lc:var(--desk)} [data-layer="mobile"]{--lc:var(--mob)} [data-layer="games"]{--lc:var(--game)}
+  [data-layer="ai"]{--lc:var(--ai)} [data-layer="web"]{--lc:var(--web)} [data-layer="desktop"]{--lc:var(--desk)} [data-layer="mobile"]{--lc:var(--mob)}
 
   /* ---------- dimension stats ---------- */
   .dims{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px; padding-block:34px 10px}
@@ -366,6 +367,7 @@
       <a href="#layers">LAYERS</a>
       <a href="#properties">PROPERTIES</a>
       <a href="#contact">CONTACT</a>
+      <a href="https://ahshika.github.io/games/">GAMES&nbsp;&#8599;</a>
       <a href="https://github.com/Ahshika" target="_blank" rel="noopener">GITHUB&nbsp;&#8599;</a>
     </nav>
   </div>
@@ -399,14 +401,13 @@
 
       <div class="viewport">
         <div class="vp-head"><span><b>MODEL</b> · FTTH TOPOLOGY OF MY WORK</span><span>HOVER A FAT · CLICK TO OPEN</span></div>
-        <div class="netwrap"><svg class="net" id="net" viewBox="0 0 640 520" role="img" aria-label="Network diagram: Ahmed as the OLT, five skill layers as splitters, eleven projects as FAT terminals"></svg></div>
+        <div class="netwrap"><svg class="net" id="net" viewBox="0 0 640 520" role="img" aria-label="Network diagram: Ahmed as the OLT, four skill layers as splitters, projects as FAT terminals"></svg></div>
         <svg class="ucs" viewBox="0 0 44 44" aria-hidden="true"><path d="M6 38 H38 M6 38 V6" stroke="#97a5b2" stroke-width="1.4" fill="none"/><path d="M38 38 l-6 -3 v6z M6 6 l-3 6 h6z" fill="#97a5b2"/><text x="36" y="32" font-size="8" fill="#97a5b2" font-family="JetBrains Mono">X</text><text x="10" y="10" font-size="8" fill="#97a5b2" font-family="JetBrains Mono">Y</text></svg>
         <div class="legend">
           <span data-layer="ai"><i class="sw"></i>AI</span>
           <span data-layer="web"><i class="sw"></i>WEB</span>
           <span data-layer="desktop"><i class="sw"></i>DESKTOP</span>
           <span data-layer="mobile"><i class="sw"></i>MOBILE</span>
-          <span data-layer="games"><i class="sw"></i>MOBILE GAMES</span>
           <span style="margin-inline-start:auto;color:var(--faint)">OLT &rarr; SPLITTER &rarr; FAT</span>
         </div>
       </div>
@@ -510,94 +511,17 @@
 </div>
 
 <script>
-const PROJECTS = [
-  {id:'fiberlens', name:'FiberLens', layer:'web', feat:true,
-   tagline:'Your DWG is the map — smart CAD for fibre-network field engineers.',
-   points:['Opens and edits DWG/DXF on Android, iOS and the web, fully offline, with the engineer’s live GPS position drawn inside the drawing.',
-           'WebGL2 renderer: 85k entities (~550k segments) in under 1 ms of GPU time. Fibre trace to the OLT, splitters, a 9-step georeferencing wizard, BOQ and 10 reports.'],
-   props:[['Platform','Android · iOS · Web'],['Tests','38 unit'],['Status','Live']],
-   stack:['TypeScript','React','WebGL2','Web Workers','Capacitor','IndexedDB','proj4'],
-   dim:'TypeScript ≈ 840 KB', repo:'https://github.com/Ahshika/FiberLens', live:'https://fiberlens.pages.dev'},
-  {id:'translator', name:'AI Live Translator', layer:'ai', feat:true,
-   tagline:'You speak Arabic, they hear German — live, in any meeting app, 100% on your PC.',
-   points:['Two-way pipeline running in parallel for both sides: Silero VAD → faster-whisper → NLLB-200 → Piper voices, across 103 languages.',
-           'A C# helper on the Windows process-loopback API captures only the meeting’s audio, so there’s no echo loop. CUDA with CPU fallback, one-click installer.'],
-   props:[['Platform','Windows'],['Tests','85 unit'],['Status','Installer']],
-   stack:['Python','faster-whisper','NLLB-200','Piper','FastAPI','C# / WASAPI','CUDA'],
-   dim:'Python ≈ 231 KB', repo:'https://github.com/Ahshika/AI-Live-Translator'},
-  {id:'fixtrack', name:'FixTrack', layer:'mobile', feat:true,
-   tagline:'Replaces the cashier software phone-repair shops in Egypt run today.',
-   points:['Repair workflow (intake → diagnosis → customer approval → warranty delivery) plus a barcode POS, IMEI tracking, used-phone purchases and mobile wallets.',
-           'The shop PC is the server: an embedded HTTP server and SQLite that the shop’s phones join over Wi-Fi, offline. Firebase for QR tracking and branches; Ed25519-signed licences.'],
-   props:[['Platform','Windows · Android'],['Tests','102 unit · 5 load'],['Status','v1.0.2']],
-   stack:['Flutter','Dart','Riverpod','SQLite','shelf','Firebase'],
-   dim:'Dart ≈ 944 KB', repo:'https://github.com/Ahshika/FixTrack'},
-  {id:'orderly', name:'Order Ly', layer:'mobile', feat:true,
-   tagline:'Cafe customers scan the table QR, order and pay from their own phone.',
-   points:['QR web menu in Arabic and English with sizes, extras and upsell; pay by cash, card, Vodafone Cash or InstaPay with a transfer screenshot the cashier confirms; live order status, call the waiter, ask for the bill.',
-           'The cashier PC runs a self-restarting local server with SQLite, and orders reach it through Firebase Realtime Database in about a second. Bar and kitchen display, per-station ticket printing, recipe-based stock, menu-engineering reports.'],
-   props:[['Platform','Windows · Android · Web'],['Tests','61 unit · 2 load'],['Status','v1.0.4']],
-   stack:['Flutter','Dart','SQLite','shelf','Firebase RTDB','Firebase Hosting'],
-   dim:'Dart ≈ 720 KB', repo:'https://github.com/Ahshika/Order-Ly', live:'https://orderly-yvzug.web.app'},
-  {id:'onebrain', name:'One Brain', layer:'games',
-   tagline:'A daily brain puzzle, plus an endless Challenge Path that keeps getting harder.',
-   points:['The daily puzzle is generated from the date, so every player gets the same one with no server. 8 procedural puzzle types (logic, math, memory, pattern, visual, sequence, spatial, word) across 5 difficulty tiers.',
-           'Stages of 10 levels that tighten the rules (fewer attempts, a clock, no hints, boss levels); after stage 10 the game creates its own themed stages. AdMob with a polite frequency cap, Play Billing 8, Arabic RTL and dark mode.'],
-   props:[['Platform','Android'],['Tests','41 unit'],['Status','v1.0.0']],
-   stack:['Java','Android SDK','Material 3','MVVM','AdMob','Play Billing'],
-   dim:'Java ≈ 428 KB', repo:'https://github.com/Ahshika/One-Brain'},
-  {id:'nightgold', name:'NightGold V3', layer:'desktop',
-   tagline:'Password manager and file locker for Windows — no master password to forget.',
-   points:['Unlocks with a 6-digit TOTP code; every secret AES-256 encrypted in a local vault; generator with Arabic letters; weak and reused password audit.',
-           'Quick Lock turns any file or folder into an encrypted .ngLock in place and re-locks it on Windows lock, sleep or shutdown.'],
-   props:[['Platform','Windows'],['Crypto','AES-256'],['Status','v3 (V1→V3)']],
-   stack:['Electron','React 19','SQLite','scrypt','TOTP'],
-   dim:'JavaScript ≈ 127 KB', repo:'https://github.com/Ahshika/NightGold-Password-Manager'},
-  {id:'pgv2', name:'Password Generator V2', layer:'desktop',
-   tagline:'NightGold V2 — where the generator grew into a password manager.',
-   points:['Password generator with a live strength meter, plus a saved-credentials vault with search, favourites and categories.',
-           'Vault unlocked by a TOTP code paired through a QR code; Arabic / English interface with i18next; packaged as a Windows installer.'],
-   props:[['Platform','Windows'],['2FA','TOTP + QR'],['Status','V2']],
-   stack:['Electron','React 19','Tailwind','SQLite','Speakeasy','i18next'],
-   dim:'JavaScript ≈ 84 KB', repo:'https://github.com/Ahshika/Password-Generator-V2'},
-  {id:'pgv1', name:'Password Generator V1', layer:'desktop',
-   tagline:'Where NightGold started: a customizable password generator with a local vault.',
-   points:['Generates 8–64 character passwords with upper case, numbers, symbols and optional Arabic letters; one-click copy.',
-           'Saves site, username and password in an AES-256-CBC encrypted SQLite vault unlocked by an authenticator code; Arabic RTL and English.'],
-   props:[['Platform','Windows'],['Crypto','AES-256-CBC'],['Status','V1']],
-   stack:['Electron','React','Vite','Tailwind','SQLite','i18next'],
-   dim:'JavaScript ≈ 21 KB', repo:'https://github.com/Ahshika/Password-Generator-V1'},
-  {id:'geosnap', name:'GeoSnap Pro', layer:'mobile',
-   tagline:'A GPS camera built for site inspections.',
-   points:['Live watermark in four stamp templates, real EXIF GPS on every photo, and drag-the-pin correction for GPS drift.',
-           'In-app gallery, PDF inspection reports, a native Java bridge, obfuscated and signed release builds.'],
-   props:[['Platform','Android'],['Stamps','4 templates'],['Status','V2']],
-   stack:['Capacitor','JavaScript','Java','Leaflet','piexif','jsPDF'],
-   dim:'JavaScript ≈ 80 KB', repo:'https://github.com/Ahshika/GeoSnap-Pro-V2'},
-  {id:'wedding', name:'Wedding Decor Bot', layer:'ai',
-   tagline:'A Messenger and WhatsApp sales assistant that speaks Egyptian Arabic.',
-   points:['Express webhook connecting Messenger and the WhatsApp Cloud API to Google Gemini.',
-           'Qualifies leads by asking for event type, venue and date; deployed on Render.'],
-   props:[['Platform','Cloud'],['Channels','2'],['Status','Live']],
-   stack:['Node.js','Express','Gemini API','Meta Graph API'],
-   dim:'JavaScript ≈ 10 KB', repo:'https://github.com/Ahshika/wedding-decor-bot'},
-  {id:'optinav', name:'Opti Nav', layer:'desktop',
-   tagline:'The desktop CAD viewer that became FiberLens.',
-   points:['Multi-document tabs, model and paper-space layouts, markup tools.',
-           'A parser registry that retries across engines to open DWG, DXF, STEP, IGES and STL.'],
-   props:[['Platform','Windows'],['Formats','5'],['Status','Prototype']],
-   stack:['Electron','React','TypeScript','Zustand','Leaflet'],
-   dim:'TypeScript ≈ 240 KB', repo:'https://github.com/Ahshika/Opti-Nav'},
-];
+/* Projects come from data/projects.json (kept in sync by the automation; software only). */
+let PROJECTS = [];
 const LAYERS = [
   {id:'ai', name:'AI', color:'#f4c542'},
   {id:'web', name:'WEB', color:'#4fd1e8'},
   {id:'desktop', name:'DESKTOP', color:'#6fd38f'},
-  {id:'mobile', name:'MOBILE', color:'#ef7bd8'},
-  {id:'games', name:'MOBILE GAMES', color:'#8f84ff'}
+  {id:'mobile', name:'MOBILE', color:'#ef7bd8'}
 ];
 const state = {on:new Set(LAYERS.map(l=>l.id))};
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const safeUrl = u => /^https:///i.test(u || '') ? u : '';
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ---------- project cards ---------- */
@@ -608,7 +532,8 @@ function renderBlocks(){ blocks.innerHTML = PROJECTS.map((p,i) => {
   const links = [
     p.repo ? `<a class="btn" href="${esc(p.repo)}" target="_blank" rel="noopener">Repo <span class="arr">&#8599;</span></a>` : `<span class="btn" aria-disabled="true">Private repo</span>`,
     p.live ? `<a class="btn primary" href="${esc(p.live)}" target="_blank" rel="noopener">Live app <span class="arr">&#8599;</span></a>` : '',
-    ...(p.extra||[]).map(([l,u])=>`<a class="btn" href="${u}" target="_blank" rel="noopener">${esc(l)} <span class="arr">&#8599;</span></a>`)
+    ...(p.downloads||[]).filter(d=>safeUrl(d.url)).map(d=>`<a class="btn" href="${esc(d.url)}" rel="noopener">&#8681; ${esc(d.label)}</a>`),
+    ...(p.extra||[]).filter(([,u])=>safeUrl(u)).map(([l,u])=>`<a class="btn" href="${esc(u)}" target="_blank" rel="noopener">${esc(l)} <span class="arr">&#8599;</span></a>`)
   ].join('');
   const head = `<div class="chead"><span class="lbl">BLK-${String(i+1).padStart(2,'0')} · ${esc(p.id.toUpperCase())}</span><span class="layer-tag"><i class="sw"></i>${esc(p.layer)}</span></div>`;
   const body = `<h3>${esc(p.name)}</h3><p class="tagline">${esc(p.tagline)}</p>${p.points.length ? `<ul>${p.points.map(t=>`<li>${esc(t)}</li>`).join('')}</ul>` : ''}`;
@@ -641,7 +566,7 @@ chips.addEventListener('click', e => {
 /* ---------- FTTH network SVG ---------- */
 const svg = document.getElementById('net');
 const NS = 'http://www.w3.org/2000/svg';
-const order = ['ai','web','desktop','mobile','games'];
+const order = ['ai','web','desktop','mobile'];
 let sorted, fy, sy;
 function computeLayout(){
   sorted = order.flatMap(l => PROJECTS.filter(p=>p.layer===l));
@@ -771,18 +696,20 @@ function run(raw){
   if(!cmd) return;
   switch(cmd){
     case 'help': case '?':
-      say('Commands: <b>PROJECTS</b> · <b>LAYERS</b> · <b>ABOUT</b> · <b>CONTACT</b> · <b>OPEN</b> name · <b>LAYER</b> ai|web|desktop|mobile|games|all · <b>CV</b> · <b>GITHUB</b>'); break;
+      say('Commands: <b>PROJECTS</b> · <b>LAYERS</b> · <b>ABOUT</b> · <b>CONTACT</b> · <b>OPEN</b> name · <b>LAYER</b> ai|web|desktop|mobile|all · <b>GAMES</b> · <b>CV</b> · <b>GITHUB</b>'); break;
     case 'projects': case 'blocks': go('projects'); say('Zoom to <b>PROJECTS</b>.'); break;
     case 'layers': case 'skills': go('layers'); say('Opened <b>LAYER PROPERTIES MANAGER</b>.'); break;
     case 'about': case 'properties': go('properties'); say('Showing <b>PROPERTIES</b>.'); break;
     case 'contact': case 'plot': go('contact'); say('Ready to <b>PLOT</b> &rarr; ahmedhassanshika655@gmail.com'); break;
     case 'cv': window.open('cv/Ahmed-Hassan-CV-EN.pdf','_blank','noopener'); say('Opening <b>CV (EN)</b>.'); break;
     case 'github': window.open('https://github.com/Ahshika','_blank','noopener'); say('Opening <b>github.com/Ahshika</b>.'); break;
+    case 'games': case 'game': say('Opening the <b>GAMES</b> portfolio&hellip;'); location.href = 'https://ahshika.github.io/games/'; break;
     case 'layer': case 'la': {
       const l = LAYERS.find(x=>x.id===arg || x.name.toLowerCase()===arg);
+      if(arg==='games'){ location.href = 'https://ahshika.github.io/games/'; break; }
       if(arg==='all'||!arg){ LAYERS.forEach(x=>state.on.add(x.id)); applyLayers(); say('All layers <b>ON</b>.'); }
       else if(l){ state.on = new Set([l.id]); applyLayers(); go('projects'); say(`Layer <b>${l.name}</b> isolated.`); }
-      else say(`No layer named "${esc(arg)}". Try ai, web, desktop, mobile, games.`);
+      else say(`No layer named "${esc(arg)}". Try ai, web, desktop, mobile.`);
       break; }
     case 'open': case 'insert': case 'zoom': {
       const p = PROJECTS.find(x => x.id.startsWith(arg.replace(/\s/g,'')) || x.name.toLowerCase().startsWith(arg));
@@ -799,31 +726,6 @@ addEventListener('keydown', e => {
   if(document.activeElement===cmdin || e.ctrlKey || e.metaKey || e.altKey) return;
   if(e.key.length===1 && /[a-z?]/i.test(e.key) && !e.target.closest('input,textarea')){ cmdin.focus(); }
 });
-
-/* ---------- live sync with GitHub: new public repos appear automatically ---------- */
-const GH_USER = 'Ahshika', SKIP = new Set(['ahshika.github.io', 'ahshika']);
-const safeUrl = u => /^https?:\/\//i.test(u || '') ? u : '';
-const nice = n => n.replace(/[-_]+/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-function guessLayer(r){
-  const s = ((r.topics || []).join(' ') + ' ' + (r.description || '') + ' ' + r.name).toLowerCase();
-  const lang = (r.language || '').toLowerCase();
-  if(/\b(ai|ml|llm|gpt|gemini|openai|whisper|chatbot|bot|nlp|translator|vision)\b/.test(s)) return 'ai';
-  if(/\b(game|games|gamedev|puzzle-game)\b/.test(s)) return 'games';
-  if(['dart','kotlin','swift','java'].includes(lang) || /\b(android|ios|mobile|flutter|capacitor)\b/.test(s)) return 'mobile';
-  if(['c#','c++','c','autoit','powershell'].includes(lang) || /\b(desktop|electron|windows|wpf|winforms)\b/.test(s)) return 'desktop';
-  return 'web';
-}
-function guessPlatform(r){
-  const s = ((r.topics || []).join(' ') + ' ' + (r.description || '') + ' ' + r.name).toLowerCase();
-  const out = [];
-  if(/\b(web|website|pwa|react|vue|nextjs|html)\b/.test(s)) out.push('Web');
-  if(/\b(windows|desktop|electron|wpf)\b/.test(s)) out.push('Windows');
-  if(/\b(android|flutter|capacitor|mobile)\b/.test(s) || ['kotlin','java','dart'].includes((r.language || '').toLowerCase())) out.push('Android');
-  if(/\b(ios|iphone|swift)\b/.test(s)) out.push('iOS');
-  if(/\b(cloud|bot|server|api|render|serverless)\b/.test(s)) out.push('Cloud');
-  if(out.length) return out.join(' · ');
-  return {mobile:'Android', games:'Android', desktop:'Windows', web:'Web', ai:'Cloud'}[guessLayer(r)] || 'Web';
-}
 
 /* ---------- live figures: test counts come from stats.json (refreshed by a GitHub Action
    that counts the tests in every repo), platforms are collected from the project cards ---------- */
@@ -868,35 +770,24 @@ async function loadStats(){
 function updateCounts(){
   updateFigures();
   document.querySelectorAll('[data-count]').forEach(el => el.textContent = PROJECTS.length);
-  svg.setAttribute('aria-label', `Network diagram: Ahmed as the OLT, five skill layers as splitters, ${PROJECTS.length} projects as FAT terminals`);
+  svg.setAttribute('aria-label', `Network diagram: Ahmed as the OLT, ${LAYERS.length} skill layers as splitters, ${PROJECTS.length} projects as FAT terminals`);
 }
-async function syncGitHub(){
-  let repos = null;
-  try { const c = sessionStorage.getItem('gh-repos'); if(c) repos = JSON.parse(c); } catch(e){}
-  if(!repos){
-    try {
-      const r = await fetch(`https://api.github.com/users/${GH_USER}/repos?per_page=100&sort=created`, {headers:{Accept:'application/vnd.github+json'}});
-      if(!r.ok) return;
-      repos = (await r.json()).map(({name, html_url, description, language, topics, homepage, fork, archived, size, pushed_at}) =>
-        ({name, html_url, description, language, topics, homepage, fork, archived, size, pushed_at}));
-      try { sessionStorage.setItem('gh-repos', JSON.stringify(repos)); } catch(e){}
-    } catch(e){ return; }
+/* ---------- project data: data/projects.json ---------- */
+async function loadProjects(){
+  try {
+    const r = await fetch('data/projects.json', {cache: 'no-cache'});
+    if(!r.ok) throw new Error(String(r.status));
+    const data = await r.json();
+    // Defence in depth: this site shows software only; games live at ahshika.github.io/games/.
+    PROJECTS = (Array.isArray(data.projects) ? data.projects : []).filter(p => p && p.family === 'SOFTWARE' && LAYERS.some(l => l.id === p.layer));
+  } catch(e){
+    blocks.innerHTML = '<p class="loaderr">Could not load the projects. Please reload the page.</p>';
+    return;
   }
-  const known = new Set();
-  PROJECTS.forEach(p => { if(p.repo) known.add(p.repo.toLowerCase()); (p.extra || []).forEach(([, u]) => known.add(u.toLowerCase())); });
-  const fresh = repos.filter(r => !r.fork && !r.archived && !SKIP.has(r.name.toLowerCase()) && !known.has(r.html_url.toLowerCase()));
-  if(!fresh.length) return;
-  fresh.forEach(r => PROJECTS.push({
-    id: 'gh-' + r.name.toLowerCase().replace(/[^a-z0-9]+/g, ''), name: nice(r.name), layer: guessLayer(r),
-    tagline: r.description || 'New project on GitHub.', points: [],
-    props: [['Platform', guessPlatform(r)], ['Language', r.language || '—'], ['Status', 'New']],
-    stack: (r.topics && r.topics.length) ? r.topics.slice(0, 6) : [r.language || 'Code'],
-    dim: `Repo ≈ ${r.size} KB`, repo: r.html_url, live: safeUrl(r.homepage)
-  }));
   applyStats(); renderBlocks(); renderChips(); computeLayout(); netMode = ''; buildNet(); applyLayers(); updateCounts();
 }
 updateFigures();
-syncGitHub();
+loadProjects();
 loadStats();
 </script>
 </body>
