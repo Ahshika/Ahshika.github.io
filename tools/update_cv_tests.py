@@ -19,8 +19,8 @@ def phrase(lang, unit, load):
     if lang == 'AR':
         text = f'{unit} اختبار'
         return text + (f' و{load} اختبار ضغط k6' if load else '')
-    text = f'{unit} tests'
-    return text + (f' + {load} k6 load tests' if load else '')
+    text = f'{unit} test' + ('' if unit == 1 else 's')
+    return text + (f' + {load} k6 load test' + ('' if load == 1 else 's') if load else '')
 
 
 def main():

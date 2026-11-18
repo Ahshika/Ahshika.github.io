@@ -4,236 +4,178 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>أحمد حسن مصطفى — السيرة الذاتية</title>
+<meta name="author" content="Ahmed Hassan Mostafa">
+<meta name="description" content="السيرة الذاتية لأحمد حسن مصطفى، مطوّر Full Stack (React) وأتمتة بالذكاء الاصطناعي، الإسكندرية، مصر">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Cairo:wght@500;700;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
+<!--
+  ATS layout: one column, real text only (no icons, images, tables or text in graphics),
+  standard section headings, plain-text URLs, and no font ligatures in Latin text so PDF text extracts cleanly.
+  Keep: <article class="card"> per project, every github.com/Ahshika/<repo> link,
+  <span data-tests="Repo"> and <span class="pcount">: tools/update_cv*.py rely on them.
+-->
 <style>
-  :root{
-    --paper:#12151a; --surface:#1a1f24; --ink:#eef1ee; --ink-soft:#a2acb0; --ink-faint:#727d82;
-    --line:#2a3036; --accent:#39d9ac; --accent-ink:#0b1210; --accent-soft:#17332c;
-    --tag-bg:#1f2620; --tag-ink:#c7d0c9; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px -10px rgba(0,0,0,.5);
-  }
+  :root{ --ink:#111; --soft:#333; --faint:#555; --rule:#999; }
   *{box-sizing:border-box;}
-  body{margin:0; background:var(--paper); color:var(--ink); font-family:'Tajawal',sans-serif; -webkit-font-smoothing:antialiased; padding-inline:20px;}
-  .page{max-width:920px; margin:0 auto; padding-block: 28px 60px;}
-  header.head{display:flex; flex-wrap:wrap; align-items:flex-start; gap:20px; padding-bottom:20px; border-bottom:1px solid var(--line); margin-bottom:22px;}
-  .monogram{width:62px;height:62px;border-radius:16px; background:var(--accent-soft); color:var(--accent); display:flex;align-items:center;justify-content:center; font-family:'Cairo',sans-serif; font-weight:900; font-size:22px; flex:none;}
-  .id-block{flex:1 1 320px; min-width:0;}
-  .name{font-family:'Cairo',sans-serif; font-weight:900; font-size:clamp(28px,4vw,36px); line-height:1.15; text-wrap:balance; margin:0 0 8px;}
-  .role{color:var(--accent); font:700 15.5px/1.4 'Tajawal',sans-serif; margin:0 0 12px;}
-  .contact-row{display:flex; flex-wrap:wrap; gap:6px 16px; font:500 13px/1.5 'Tajawal',sans-serif; color:var(--ink-soft); direction:ltr; justify-content:flex-end;}
-  .contact-row a{color:var(--ink-soft); text-decoration:none;}
-  .contact-row span.dot{color:var(--ink-faint);}
-  .grid{display:grid; grid-template-columns: 236px 1fr; gap:36px; margin-bottom:14px;}
-  @media (max-width:680px){.grid{grid-template-columns:1fr;}}
-  .pairs{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px;}
-  @media (max-width:680px){.pairs{grid-template-columns:1fr;}}
-  .projects-full{margin-top:14px;}
-  h2.section{font:700 15px/1 'Cairo',sans-serif; color:var(--ink-faint); margin:0 0 12px;}
-  aside .block{margin-bottom:24px; page-break-inside:avoid;}
-  aside .block:last-child{margin-bottom:0;}
-  .skill-group{margin-bottom:11px;}
-  .skill-group:last-child{margin-bottom:0;}
-  .skill-group h3{font:700 13px/1.3 'Cairo',sans-serif; color:var(--ink); margin:0 0 4px;}
-  .skill-group p{margin:0; font:400 12px/1.6 'Tajawal',sans-serif; color:var(--ink-soft);}
-  .edu-item, .lang-item{margin-bottom:10px;}
-  .edu-item:last-child, .lang-item:last-child{margin-bottom:0;}
-  .edu-item .school{font:700 14px/1.5 'Cairo',sans-serif; color:var(--ink);}
-  .edu-item .deg{font:400 12.5px/1.6 'Tajawal',sans-serif; color:var(--ink-soft); margin-top:3px;}
-  .edu-item .yr{font:700 12px/1.5 'Tajawal',sans-serif; color:var(--accent); margin-top:4px;}
-  .lang-item{display:flex; justify-content:space-between; gap:10px; font:500 13px/1.5 'Tajawal',sans-serif;}
-  .lang-item .nm{color:var(--ink); font-weight:700;}
-  .lang-item .lv{color:var(--ink-soft); font-size:12px; text-align:left;}
-  main .summary{font:400 14.5px/1.7 'Tajawal',sans-serif; color:var(--ink-soft); max-width:64ch; margin:0 0 20px;}
-  .projects{display:flex; flex-direction:column; gap:14px;}
-  .card{background:var(--surface); border:1px solid var(--line); border-right:3px solid var(--accent); border-radius:10px; padding:14px 18px; box-shadow:var(--shadow); page-break-inside:avoid;}
-  .card h3{font:700 15.5px/1.5 'Cairo',sans-serif; color:var(--ink); margin:0 0 6px;}
-  .card ul{margin:0 0 9px; padding-inline-start:18px; font:400 13.5px/1.7 'Tajawal',sans-serif; color:var(--ink-soft);}
-  .card li{margin-bottom:3px;}
-  .card li:last-child{margin-bottom:0;}
-  .tags{display:flex; flex-wrap:wrap; gap:6px; direction:ltr; justify-content:flex-end;}
-  .tag{font:500 11px/1 'JetBrains Mono',monospace; color:var(--tag-ink); background:var(--tag-bg); padding:5px 8px; border-radius:5px;}
-  .links{display:flex; flex-wrap:wrap; gap:4px 16px; margin-top:9px; font:500 11.5px/1.4 'JetBrains Mono',monospace; direction:ltr; justify-content:flex-end;}
-  .links a{color:var(--accent); text-decoration:none;}
-  .links a:hover{text-decoration:underline;}
-  .links .private{color:var(--ink-faint); font-family:'Tajawal',sans-serif; font-size:12.5px;}
-  footer.note{margin-top:28px; padding-top:14px; border-top:1px solid var(--line); font:400 12.5px/1.7 'Tajawal',sans-serif; color:var(--ink-faint);}
+  body{margin:0; background:#fff; color:var(--ink); font-family:"IBM Plex Sans Arabic",Arial,"Liberation Sans",Tahoma,sans-serif; font-size:9.4pt; line-height:1.33; padding-inline:16px;}
+  .page{max-width:820px; margin:0 auto; padding-block:24px 40px;}
+  a{color:inherit; text-decoration:none;}
+  .ltr{direction:ltr; unicode-bidi:isolate; font-variant-ligatures:none;}
+  header{text-align:center; margin-bottom:10px;}
+  h1{font-size:18pt; margin:0 0 2px;}
+  .title{font-size:11.5pt; font-weight:bold; margin:0 0 4px;}
+  .contact{margin:0; font-size:9pt; color:var(--soft); overflow-wrap:anywhere;}
+  h2{font-size:11.5pt; border-bottom:1px solid var(--rule); padding-bottom:2px; margin:10px 0 4px;}
+  p{margin:0 0 4px;}
+  .skills p{margin:0 0 2px;}
+  .card{margin:0 0 6px; break-inside:avoid; page-break-inside:avoid;}
+  .card h3{display:flex; justify-content:space-between; gap:12px; font-size:10pt; margin:0;}
+  .card h3 .when{font-weight:normal; white-space:nowrap; color:var(--soft);}
+  .card .stack{color:var(--soft); margin:0;}
+  .card ul{margin:2px 0 1px; padding-inline-start:18px;}
+  .card li{margin:0 0 1px;}
+  .card .links{font-size:9pt; color:var(--faint); overflow-wrap:anywhere;}
+  .edu h3{display:flex; justify-content:space-between; gap:12px; font-size:10pt; margin:0;}
+  .edu h3 .when{font-weight:normal; color:var(--soft);}
   @media print{
-    :root{
-      --paper:#f5f3ee; --surface:#ffffff; --ink:#191d1f; --ink-soft:#5c6570; --ink-faint:#8a9198;
-      --line:#ddd8cc; --accent:#0b7a66; --accent-ink:#ffffff; --accent-soft:#e2f0ea;
-      --tag-bg:#eef0ea; --tag-ink:#3c463f;
-    }
     body{padding:0;}
-    .page{max-width:none; padding:0; margin:0;}
-    .card{box-shadow:none; padding:11px 16px;}
-    .projects{gap:10px;}
-    .card ul{margin-bottom:6px; font-size:12.5px; line-height:1.45;}
-    @page{ size:A4; margin:11mm; }
+    .page{max-width:none; padding:0;}
+    @page{ size:A4; margin:9mm 12mm; }
   }
 </style>
 </head>
 <body>
 <div class="page">
-  <header class="head">
-    <div class="monogram">أح</div>
-    <div class="id-block">
-      <h1 class="name">أحمد حسن مصطفى</h1>
-      <p class="role">مطوّر Full Stack (React) وأتمتة بالذكاء الاصطناعي</p>
-      <div class="contact-row">
-        <span>الإسكندرية، مصر</span>
-        <span class="dot">&middot;</span>
-        <a href="tel:+201212256869">+20 12 1225 6869</a>
-        <span class="dot">&middot;</span>
-        <a href="mailto:ahmedhassanshika655@gmail.com">ahmedhassanshika655@gmail.com</a>
-        <span class="dot">&middot;</span>
-        <a href="https://github.com/Ahshika">github.com/Ahshika</a>
-        <span class="dot">&middot;</span>
-        <a href="https://www.linkedin.com/in/ahmed-hassan-3098623ba/">linkedin.com/in/ahmed-hassan</a>
-        <span class="dot">&middot;</span>
-        <a href="https://ahshika.github.io">ahshika.github.io</a>
-      </div>
-    </div>
+  <header>
+    <h1>أحمد حسن مصطفى</h1>
+    <p class="title">مطوّر Full Stack (React) وأتمتة بالذكاء الاصطناعي</p>
+    <p class="contact">الإسكندرية، مصر | <a class="ltr" href="tel:+201212256869">+20 12 1225 6869</a> | <a class="ltr" href="mailto:ahmedhassanshika655@gmail.com">ahmedhassanshika655@gmail.com</a></p>
+    <p class="contact"><a class="ltr" href="https://ahshika.github.io">ahshika.github.io</a> | <a class="ltr" href="https://github.com/Ahshika">github.com/Ahshika</a> | <a class="ltr" href="https://www.linkedin.com/in/ahmed-hassan-3098623ba/">linkedin.com/in/ahmed-hassan-3098623ba</a></p>
   </header>
 
-  <div class="grid">
-    <aside>
-      <div class="block">
-        <h2 class="section">المهارات</h2>
-        <div class="skill-group"><h3>لغات البرمجة</h3><p>TypeScript، JavaScript، Python، Dart، C#، Java (ربط أندرويد)</p></div>
-        <div class="skill-group"><h3>الواجهة الأمامية</h3><p>React 18/19، Tailwind CSS، Vite، WebGL2</p></div>
-        <div class="skill-group"><h3>الواجهة الخلفية</h3><p>Node.js، Express، FastAPI، REST وWebSocket APIs، سيرفرات HTTP مدمجة</p></div>
-        <div class="skill-group"><h3>قواعد البيانات</h3><p>SQLite، IndexedDB، Firebase Firestore</p></div>
-        <div class="skill-group"><h3>الذكاء الاصطناعي والأتمتة</h3><p>Gemini API، faster-whisper، NLLB-200، Piper TTS، Silero VAD، CUDA، شات بوتات، تكاملات WhatsApp وTelegram وMeta</p></div>
-        <div class="skill-group"><h3>سطح المكتب والموبايل</h3><p>Electron، Flutter (ويندوز/أندرويد)، Capacitor (أندرويد/iOS)</p></div>
-        <div class="skill-group"><h3>الأمان وأدوات أخرى</h3><p>تشفير AES-256، TOTP 2FA، توقيع تراخيص Ed25519، GIS والإحداثيات (proj4)، ملفات DWG/DXF، برامج تثبيت (Inno Setup، NSIS)، اختبارات آلية، Git</p></div>
-      </div>
-      <div class="block">
-        <h2 class="section">التعليم</h2>
-        <div class="edu-item">
-          <div class="school">جامعة فاروس بالإسكندرية</div>
-          <div class="deg">بكالوريوس هندسة حاسبات — الفرقة الثالثة، مسار تخصصين</div>
-          <div class="yr">قيد الدراسة</div>
-        </div>
-      </div>
-      <div class="block">
-        <h2 class="section">اللغات</h2>
-        <div class="lang-item"><span class="nm">العربية</span><span class="lv">اللغة الأم</span></div>
-        <div class="lang-item"><span class="nm">الإنجليزية</span><span class="lv">قراءة وكتابة جيدة، ومحادثة في تطور</span></div>
-      </div>
-    </aside>
+  <h2>نبذة</h2>
+  <p>طالب هندسة حاسبات بالفرقة الثالثة ومطوّر Full Stack اتعلّم البرمجة ذاتياً، بيسلّم منتجات كاملة ومُختبرة: تطبيقات ويب بـ React وNode.js، وأتمتة بالذكاء الاصطناعي، وبرامج سطح مكتب وموبايل بتشتغل من غير إنترنت (Electron وFlutter وCapacitor وAndroid). منشور له <span class="pcount">12</span> مشروع على GitHub، منها محرك CAD بـ WebGL2 لمهندسي شبكات الفايبر، ومترجم صوتي فوري شغال بالكامل على الجهاز، و3 أنظمة كاشير (POS) بتشتغل من غير إنترنت ومعاها اختبارات وحدات وتكامل واختبارات ضغط Grafana k6.</p>
 
-    <main>
-      <h2 class="section">نبذة</h2>
-      <p class="summary">طالب هندسة حاسبات بالفرقة الثالثة، اتعلّم البرمجة ذاتياً بالكامل، وبيسلّم منتجات كاملة: تطبيقات ويب متكاملة بـ React وNode.js، وأتمتة بالذكاء الاصطناعي، وبرامج سطح مكتب وموبايل بتشتغل من غير إنترنت. نفّذ <span class="pcount">15</span> مشاريع، منها محرك CAD بـ WebGL2 لمهندسي شبكات الفايبر، ومترجم صوتي فوري شغال بالكامل على الجهاز.</p>
-
-      <h2 class="section">المشاريع</h2>
-      <div class="projects">
-        <article class="card">
-          <h3>FiberLens — منصة CAD ذكية لمشاريع الفايبر FTTH</h3>
-          <ul>
-            <li>منصة CAD بتشتغل من غير إنترنت، بتفتح وتعدّل DWG/DXF على أندرويد وiOS والويب، وبتعرض موقع المهندس بالـ GPS جوه الرسمة نفسها.</li>
-            <li>محرك رسم بـ WebGL2 بيعرض 85 ألف عنصر في أقل من 1 مللي ثانية، مع تتبع الشعيرة لحد الـ OLT، والـ Splitters، ومعايرة الإحداثيات، والـ BOQ و10 تقارير. <span data-tests="FiberLens">38 اختبار</span>.</li>
-          </ul>
-          <div class="tags"><span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">WebGL2</span><span class="tag">Capacitor</span><span class="tag">proj4</span></div>
-          <div class="links"><a href="https://github.com/Ahshika/FiberLens">github.com/Ahshika/FiberLens</a><a href="https://fiberlens.pages.dev">Live: fiberlens.pages.dev</a></div>
-        </article>
-        <article class="card">
-          <h3>المترجم الفوري — ترجمة صوتية في الاتجاهين لحظياً</h3>
-          <ul>
-            <li>ذكاء اصطناعي محلي بالكامل (Whisper ← NLLB-200 ← Piper) بيترجم الطرفين في مكالمات Zoom وTeams وMeet عن طريق مايك افتراضي، في 103 لغة.</li>
-            <li>أداة C# بتسجل صوت الاجتماع بس، مع تسريع CUDA، وبرنامج تثبيت بضغطة واحدة، و<span data-tests="AI-Live-Translator">85 اختبار</span>.</li>
-          </ul>
-          <div class="tags"><span class="tag">Python</span><span class="tag">Whisper</span><span class="tag">NLLB-200</span><span class="tag">FastAPI</span><span class="tag">C#</span></div>
-          <div class="links"><a href="https://github.com/Ahshika/AI-Live-Translator">github.com/Ahshika/AI-Live-Translator</a></div>
-        </article>
-      </div>
-    </main>
+  <h2>المهارات التقنية</h2>
+  <div class="skills">
+    <p><b><bdi>لغات البرمجة:</bdi></b> TypeScript، JavaScript، Python، Dart، Java، C#، SQL، HTML، CSS</p>
+    <p><b><bdi>الواجهة الأمامية:</bdi></b> React 18/19، Tailwind CSS، Vite، WebGL2، واجهات متجاوبة وبالعربي (RTL)</p>
+    <p><b><bdi>الواجهة الخلفية والـ APIs:</bdi></b> Node.js، Express، FastAPI، REST APIs، WebSocket، سيرفرات HTTP/LAN مدمجة، Webhooks</p>
+    <p><b><bdi>قواعد البيانات:</bdi></b> SQLite، IndexedDB، Firebase Firestore</p>
+    <p><b><bdi>الذكاء الاصطناعي والأتمتة:</bdi></b> Google Gemini API، Whisper (faster-whisper)، NLLB-200، Piper TTS، Silero VAD، CUDA، شات بوتات، WhatsApp Cloud API، Messenger، Telegram</p>
+    <p><b><bdi>سطح المكتب والموبايل:</bdi></b> Electron، Flutter (ويندوز وأندرويد)، Riverpod، Capacitor (أندرويد وiOS)، Android SDK، Material 3، AdMob، Google Play Billing</p>
+    <p><b><bdi>الاختبارات والجودة:</bdi></b> اختبارات الوحدات والتكامل، Vitest، اختبارات Flutter، اختبارات أندرويد، اختبارات الضغط Grafana k6، GitHub Actions CI/CD</p>
+    <p><b><bdi>الأمان وأدوات أخرى:</bdi></b> تشفير AES-256، scrypt، TOTP 2FA، توقيع تراخيص Ed25519، GIS ومعايرة الإحداثيات (proj4)، ملفات DWG/DXF، Inno Setup، NSIS، Git، GitHub</p>
   </div>
 
-  <div class="projects projects-full">
-    <article class="card">
-      <h3>Order Ly — كاشير للكافيهات وطلب بالـ QR</h3>
-      <ul><li>العميل يمسح الـ QR ويطلب ويدفع من موبايله (محافظ أو InstaPay مع صورة التحويل) ويتابع طلبه لحظياً؛ تطبيق Flutter وسيرفر محلي على كمبيوتر الكاشير بيقوم لوحده، وFirebase للطلبات، و<span data-tests="Order-Ly">63 اختبار و2 اختبار ضغط k6</span>.</li></ul>
-      <div class="tags"><span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">SQLite</span><span class="tag">Firebase</span><span class="tag">QR</span></div>
-      <div class="links"><a href="https://github.com/Ahshika/Order-Ly">github.com/Ahshika/Order-Ly</a></div>
-    </article>
-    <article class="card">
-      <h3>FixTrack — نظام إدارة محلات صيانة وبيع الموبايلات</h3>
-      <ul><li>تطبيق Flutter واحد لويندوز وأندرويد: دورة الصيانة (استلام ← موافقة ← تسليم بالضمان) وكاشير بالباركود، وتتبع IMEI، وشراء المستعمل، والمحافظ الإلكترونية.</li><li>كمبيوتر المحل سيرفر HTTP مع SQLite والموبايلات بتتصل بيه على الواي فاي من غير إنترنت، مع تتبع بالـ QR على Firebase، وتراخيص Ed25519، و<span data-tests="FixTrack">104 اختبار و5 اختبار ضغط k6</span>.</li></ul>
-      <div class="tags"><span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">Riverpod</span><span class="tag">SQLite</span><span class="tag">Firebase</span></div>
-      <div class="links"><a href="https://github.com/Ahshika/FixTrack">github.com/Ahshika/FixTrack</a></div>
-    </article>
-    <article class="card">
-      <h3>NightGold V3 — مدير كلمات مرور وقفل للملفات</h3>
-      <ul><li>مدير كلمات مرور لويندوز بيتفتح بكود TOTP بدل كلمة سر رئيسية: خزنة AES-256، ومولّد بيدعم العربي، وفحص للكلمات الضعيفة والمكررة.</li><li>Quick Lock بيشفّر أي ملف أو فولدر مكانه (scrypt + AES-256) وبيقفله تاني لما ويندوز يتقفل أو ينام أو يطفي.</li></ul>
-      <div class="tags"><span class="tag">Electron</span><span class="tag">React 19</span><span class="tag">SQLite</span><span class="tag">AES-256</span><span class="tag">TOTP</span></div>
-      <div class="links"><a href="https://github.com/Ahshika/NightGold-Password-Manager">github.com/Ahshika/NightGold-Password-Manager</a></div>
-    </article>
-    <article class="card">
-      <h3>GeoSnap Pro — كاميرا GPS وتقارير معاينة</h3>
-      <ul><li>كاميرا أندرويد للمعاينات: ختم لحظي بـ 4 قوالب، وبيانات GPS حقيقية (EXIF) في كل صورة، وتصحيح الموقع بالدبوس.</li><li>جاليري داخلي، وتقارير PDF، وربط أصلي بـ Java، ونسخ إصدار موقّعة ومشفّرة.</li></ul>
-      <div class="tags"><span class="tag">Capacitor</span><span class="tag">JavaScript</span><span class="tag">Java</span><span class="tag">Leaflet</span><span class="tag">jsPDF</span></div>
-      <div class="links"><a href="https://github.com/Ahshika/GeoSnap-Pro-V2">github.com/Ahshika/GeoSnap-Pro-V2</a></div>
-    </article>
-    <div class="pairs">
-      <article class="card">
-        <h3>Password Generator V2 — الإصدار التاني من NightGold</h3>
-        <ul><li>مولّد بمقياس قوة لحظي، وخزنة (بحث، مفضلة، تصنيفات) بتتفتح بكود TOTP بيتربط بالـ QR.</li></ul>
-        <div class="tags"><span class="tag">Electron</span><span class="tag">React 19</span><span class="tag">Tailwind</span><span class="tag">SQLite</span></div>
-        <div class="links"><a href="https://github.com/Ahshika/Password-Generator-V2">github.com/Ahshika/Password-Generator-V2</a></div>
-      </article>
-      <article class="card">
-        <h3>Password Generator V1 — الإصدار الأول من NightGold</h3>
-        <ul><li>أول إصدار: كلمات مرور من 8 لـ 64 حرف (وممكن عربي) بتتحفظ في خزنة SQLite مشفّرة AES-256-CBC.</li></ul>
-        <div class="tags"><span class="tag">Electron</span><span class="tag">React</span><span class="tag">Vite</span><span class="tag">SQLite</span></div>
-        <div class="links"><a href="https://github.com/Ahshika/Password-Generator-V1">github.com/Ahshika/Password-Generator-V1</a></div>
-      </article>
-      <article class="card">
-        <h3>بوت ديكورات المناسبات بالذكاء الاصطناعي</h3>
-        <ul><li>webhook حي بيربط Messenger وWhatsApp بـ Gemini، بمحادثة بالعامية المصرية بتأهّل العملاء.</li></ul>
-        <div class="tags"><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">Gemini</span><span class="tag">Meta API</span></div>
-        <div class="links"><a href="https://github.com/Ahshika/wedding-decor-bot">github.com/Ahshika/wedding-decor-bot</a></div>
-      </article>
-      <article class="card">
-        <h3>Opti Nav — عارض CAD لسطح المكتب</h3>
-        <ul><li>عارض CAD لسطح المكتب اتطور منه FiberLens: تبويبات، وLayouts، وتعليقات، ويفتح DWG وDXF وSTEP وIGES وSTL.</li></ul>
-        <div class="tags"><span class="tag">Electron</span><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Zustand</span></div>
-        <div class="links"><a href="https://github.com/Ahshika/Opti-Nav">github.com/Ahshika/Opti-Nav</a></div>
-      </article>
-    </div>
-    <article class="card">
-      <h3>One Brain</h3>
-      <ul><li>Daily brain-puzzle game for Android: a shared daily puzzle + an endless Challenge Path that creates its own stages. 8 puzzle types, Java/OOP, AdMob + Play Billing, Arabic/English.</li></ul>
-      <div class="tags"><span class="tag">admob</span><span class="tag">android</span><span class="tag">arabic</span><span class="tag">brain-training</span><span class="tag">game</span></div>
-      <div class="links"><a href="https://github.com/Ahshika/One-Brain">github.com/Ahshika/One-Brain</a></div>
-    </article>
-    <article class="card">
-      <h3>Basket</h3>
-      <ul><li>Supermarket &amp; grocery POS for Windows + Android: scale barcodes, expiry dates (FEFO), multiple cashiers, delivery orders (Flutter, offline-first, LAN server)</li></ul>
-      <div class="tags"><span class="tag">android</span><span class="tag">barcode</span><span class="tag">dart</span><span class="tag">flutter</span><span class="tag">grocery</span></div>
-      <div class="links"><a href="https://github.com/Ahshika/Basket">github.com/Ahshika/Basket</a></div>
-    </article>
-    <article class="card">
-      <h3>Games</h3>
-      <ul><li>Games portfolio of Ahmed Hassan — pick a title, read the briefing, download and play.</li></ul>
-      <div class="tags"><span class="tag">android-game</span><span class="tag">game-portfolio</span><span class="tag">gamepad</span><span class="tag">games</span><span class="tag">github-pages</span></div>
-      <div class="links"><a href="https://github.com/Ahshika/games">github.com/Ahshika/games</a></div>
-    </article>
-    <article class="card">
-      <h3>Developers Room</h3>
-      <ul><li>مشروع جديد على GitHub.</li></ul>
-      <div class="tags"><span class="tag">TypeScript</span></div>
-      <div class="links"><a href="https://github.com/Ahshika/developers-room">github.com/Ahshika/developers-room</a></div>
-    </article>
-    <article class="card">
-      <h3>Gamers Room</h3>
-      <ul><li>The Gamer&#x27;s Room: QR entry experience for gamers</li></ul>
-      <div class="tags"><span class="tag">TypeScript</span></div>
-      <div class="links"><a href="https://github.com/Ahshika/gamers-room">github.com/Ahshika/gamers-room</a></div>
-    </article>
-    <!-- AUTO-PROJECTS: new GitHub repos are inserted above this line -->
+  <h2>التعليم</h2>
+  <div class="edu">
+    <h3><span>جامعة فاروس بالإسكندرية — بكالوريوس هندسة حاسبات</span><span class="when">قيد الدراسة</span></h3>
+    <p>الفرقة الثالثة، مسار تخصصين.</p>
   </div>
+
+  <h2>اللغات</h2>
+  <p>العربية: اللغة الأم | الإنجليزية: قراءة وكتابة جيدة، ومحادثة في تطور</p>
+
+  <h2>المشاريع</h2>
+  <article class="card">
+    <h3><span>FiberLens — منصة CAD ذكية لمشاريع الفايبر FTTH</span><span class="when">أكتوبر 2026</span></h3>
+    <p class="stack">TypeScript، React، WebGL2، Capacitor، proj4</p>
+    <ul>
+      <li>منصة CAD بتشتغل من غير إنترنت، بتفتح وتعدّل ملفات DWG/DXF على أندرويد وiOS والويب، وبتعرض موقع المهندس بالـ GPS جوه الرسمة نفسها.</li>
+      <li>محرك رسم بـ WebGL2 بيعرض 85 ألف عنصر (حوالي 550 ألف خط) في أقل من 1 مللي ثانية، مع تتبع الشعيرة لحد الـ OLT، والـ Splitters، ومعايرة الإحداثيات، والـ BOQ و10 تقارير، و<span data-tests="FiberLens">38 اختبار</span>.</li>
+    </ul>
+    <p class="links"><a class="ltr" href="https://github.com/Ahshika/FiberLens">github.com/Ahshika/FiberLens</a> | نسخة حية: <a class="ltr" href="https://fiberlens.pages.dev">fiberlens.pages.dev</a></p>
+  </article>
+  <article class="card">
+    <h3><span>AI Live Translator — ترجمة صوتية فورية في الاتجاهين</span><span class="when">أكتوبر 2026</span></h3>
+    <p class="stack">Python، Whisper، NLLB-200، Piper TTS، FastAPI، C#، CUDA</p>
+    <ul>
+      <li>ذكاء اصطناعي محلي بالكامل (VAD وWhisper وNLLB-200 وPiper) بيترجم الطرفين في مكالمات Zoom وTeams وGoogle Meet عن طريق مايك افتراضي، في 103 لغة.</li>
+      <li>أداة C# على واجهة process-loopback في ويندوز بتسجّل صوت الاجتماع بس، مع تسريع CUDA وبديل على الـ CPU، وبرنامج تثبيت بضغطة واحدة، و<span data-tests="AI-Live-Translator">85 اختبار</span>.</li>
+    </ul>
+    <p class="links"><a class="ltr" href="https://github.com/Ahshika/AI-Live-Translator">github.com/Ahshika/AI-Live-Translator</a></p>
+  </article>
+  <article class="card">
+    <h3><span>Order Ly — كاشير للكافيهات وطلب ذاتي بالـ QR</span><span class="when">أكتوبر 2026</span></h3>
+    <p class="stack">Flutter، Dart، SQLite، Firebase</p>
+    <ul>
+      <li>العميل يمسح الـ QR على الترابيزة ويطلب ويدفع من موبايله (محافظ إلكترونية أو InstaPay مع صورة التحويل) ويتابع طلبه لحظياً، مع شاشة للبار والمطبخ ومخزون بالوصفات.</li>
+      <li>كمبيوتر الكاشير عليه سيرفر محلي بيقوم لوحده وبيكمّل من غير إنترنت، مع Firebase للطلبات، و<span data-tests="Order-Ly">63 اختبار و2 اختبار ضغط k6</span>.</li>
+    </ul>
+    <p class="links"><a class="ltr" href="https://github.com/Ahshika/Order-Ly">github.com/Ahshika/Order-Ly</a> | نسخة حية: <a class="ltr" href="https://orderly-yvzug.web.app">orderly-yvzug.web.app</a></p>
+  </article>
+  <article class="card">
+    <h3><span>FixTrack — نظام إدارة محلات صيانة وبيع الموبايلات</span><span class="when">أكتوبر 2026</span></h3>
+    <p class="stack">Flutter، Dart، Riverpod، SQLite، Firebase</p>
+    <ul>
+      <li>تطبيق Flutter واحد لويندوز وأندرويد: دورة الصيانة (استلام، موافقة، تسليم بالضمان)، وكاشير بالباركود، وتتبع IMEI، وشراء المستعمل، والمحافظ الإلكترونية.</li>
+      <li>كمبيوتر المحل سيرفر HTTP مع SQLite والموبايلات بتتصل بيه على الواي فاي من غير إنترنت، مع تتبع بالـ QR على Firebase، وتراخيص موقّعة Ed25519، و<span data-tests="FixTrack">104 اختبار و5 اختبار ضغط k6</span>.</li>
+    </ul>
+    <p class="links"><a class="ltr" href="https://github.com/Ahshika/FixTrack">github.com/Ahshika/FixTrack</a></p>
+  </article>
+  <article class="card">
+    <h3><span>Basket — كاشير وإدارة للسوبر ماركت والبقالة</span><span class="when">أكتوبر 2026</span></h3>
+    <p class="stack">Flutter، Dart، SQLite، Firebase</p>
+    <ul>
+      <li>نظام كاشير وإدارة لويندوز وأندرويد بيشتغل من غير إنترنت: باركود الميزان للأصناف بالوزن، ودفعات بتاريخ الصلاحية والأقرب انتهاءً يتباع الأول (FEFO)، وكذا كاشير كل واحد بدرجه ووردية، وطلبات توصيل بالتليفون والواتساب.</li>
+      <li>كمبيوتر المحل سيرفر LAN لكل الكاشيرات والموبايلات، مع مخزون ومشتريات واستيراد Excel/CSV وتقارير Excel/PDF وربط الفروع على Firestore وصلاحيات وسجل عمليات، و<span data-tests="Basket">70 اختبار</span>.</li>
+    </ul>
+    <p class="links"><a class="ltr" href="https://github.com/Ahshika/Basket">github.com/Ahshika/Basket</a></p>
+  </article>
+  <article class="card">
+    <h3><span>NightGold V3 — مدير كلمات مرور وقفل للملفات</span><span class="when">أكتوبر 2026</span></h3>
+    <p class="stack">Electron، React 19، SQLite، AES-256، TOTP</p>
+    <ul>
+      <li>مدير كلمات مرور لويندوز بيتفتح بكود TOTP بدل كلمة سر رئيسية: خزنة AES-256، ومولّد بيدعم العربي، وفحص للكلمات الضعيفة والمكررة.</li>
+      <li>Quick Lock بيشفّر أي ملف أو فولدر مكانه (scrypt + AES-256) وبيقفله تاني لما ويندوز يتقفل أو ينام أو يطفي.</li>
+    </ul>
+    <p class="links"><a class="ltr" href="https://github.com/Ahshika/NightGold-Password-Manager">github.com/Ahshika/NightGold-Password-Manager</a></p>
+  </article>
+  <article class="card">
+    <h3><span>One Brain — لعبة ألغاز يومية للأندرويد</span><span class="when">أكتوبر 2026</span></h3>
+    <p class="stack">Java، Android SDK، Material 3، AdMob، Google Play Billing</p>
+    <ul>
+      <li>لغز يومي واحد لكل اللاعبين (بيتولّد من التاريخ من غير سيرفر) ومسار تحديات لا نهائي بيولّد مراحله بنفسه، و8 أنواع ألغاز بتتولّد تلقائياً، و5 مستويات صعوبة، بالعربي (RTL) والإنجليزي.</li>
+      <li>إعلانات AdMob مع موافقة GDPR ومشتريات داخل التطبيق بـ Google Play Billing، ومنشورة كـ APK، و<span data-tests="One-Brain">44 اختبار</span> منها اختبار عشوائي (fuzzing) للألغاز المتولّدة.</li>
+    </ul>
+    <p class="links"><a class="ltr" href="https://github.com/Ahshika/One-Brain">github.com/Ahshika/One-Brain</a></p>
+  </article>
+  <article class="card">
+    <h3><span>GeoSnap Pro — كاميرا GPS وتقارير معاينة</span><span class="when">سبتمبر 2026</span></h3>
+    <p class="stack">Capacitor، JavaScript، Java، Leaflet، jsPDF</p>
+    <ul>
+      <li>كاميرا أندرويد للمعاينات: ختم لحظي بـ 4 قوالب، وبيانات GPS حقيقية (EXIF) في كل صورة، وتصحيح الموقع بالدبوس، وجاليري داخلي، وتقارير PDF، وربط أصلي بـ Java، ونسخ إصدار موقّعة ومشفّرة.</li>
+    </ul>
+    <p class="links"><a class="ltr" href="https://github.com/Ahshika/GeoSnap-Pro-V2">github.com/Ahshika/GeoSnap-Pro-V2</a></p>
+  </article>
+  <article class="card">
+    <h3><span>Opti Nav — عارض CAD لسطح المكتب (النسخة الأولى من FiberLens)</span><span class="when">سبتمبر 2026</span></h3>
+    <p class="stack">Electron، React، TypeScript، Zustand</p>
+    <ul>
+      <li>عارض CAD لمهندسي الفايبر: تبويبات لكذا ملف، وLayouts، وتعليقات، وأكواد ألوان الشعيرات، وعرض مزدوج CAD + خريطة، ويفتح DWG وDXF وSTEP وIGES وSTL.</li>
+    </ul>
+    <p class="links"><a class="ltr" href="https://github.com/Ahshika/Opti-Nav">github.com/Ahshika/Opti-Nav</a></p>
+  </article>
+  <article class="card">
+    <h3><span>بوت مبيعات بالذكاء الاصطناعي لديكورات الأفراح والمناسبات</span><span class="when">يوليو 2026</span></h3>
+    <p class="stack">Node.js، Express، Google Gemini، Meta Messenger وWhatsApp Cloud API، Render</p>
+    <ul>
+      <li>مساعد مبيعات لكذا نشاط: webhook حي بيربط Messenger وWhatsApp بـ Gemini، بيرد بلغة كل عميل (ومنها العامية المصرية)، وبيفهم الصور والرسائل الصوتية، وبيسجّل العملاء المحتملين، مع لوحة تحكم بالعربي والإنجليزي.</li>
+    </ul>
+    <p class="links"><a class="ltr" href="https://github.com/Ahshika/wedding-decor-bot">github.com/Ahshika/wedding-decor-bot</a></p>
+  </article>
+  <article class="card">
+    <h3><span>NightGold V1 وV2 — مولّد كلمات مرور وخزنة</span><span class="when">مايو – يوليو 2026</span></h3>
+    <p class="stack">Electron، React، Vite، Tailwind CSS، SQLite</p>
+    <ul>
+      <li>V1: كلمات مرور من 8 لـ 64 حرف (وممكن عربي) بتتحفظ في خزنة SQLite مشفّرة AES-256-CBC. V2: مقياس قوة لحظي وخزنة فيها بحث بتتفتح بكود TOTP بيتربط بالـ QR.</li>
+    </ul>
+    <p class="links"><a class="ltr" href="https://github.com/Ahshika/Password-Generator-V1">github.com/Ahshika/Password-Generator-V1</a> | <a class="ltr" href="https://github.com/Ahshika/Password-Generator-V2">github.com/Ahshika/Password-Generator-V2</a></p>
+  </article>
+  <!-- AUTO-PROJECTS: new GitHub repos are inserted above this line -->
+
 </div>
 </body>
 </html>

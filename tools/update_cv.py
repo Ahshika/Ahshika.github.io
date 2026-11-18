@@ -9,19 +9,25 @@ import re
 import urllib.request
 
 USER = 'Ahshika'
-SKIP = {'ahshika.github.io', 'ahshika'}
-MARKER = '    <!-- AUTO-PROJECTS'
+# Portfolio sites and their QR intros are not CV projects; never auto-add them.
+SKIP = {'ahshika.github.io', 'ahshika', 'games', 'developers-room', 'gamers-room'}
+MARKER = '  <!-- AUTO-PROJECTS'
+REPO_LINK = r'github\.com/' + USER + r'/([A-Za-z0-9._-]+)"'
+# path -> (description fallback, link attributes, month names)
 FILES = {
-    'cv-src/Ahmed-Hassan-CV-EN.html': 'New project on GitHub.',
-    'cv-src/Ahmed-Hassan-CV-AR.html': 'مشروع جديد على GitHub.',
+    'cv-src/Ahmed-Hassan-CV-EN.html': ('New project on GitHub.', '',
+        'Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec'.split()),
+    'cv-src/Ahmed-Hassan-CV-AR.html': ('مشروع جديد على GitHub.', ' class="ltr"',
+        'يناير فبراير مارس أبريل مايو يونيو يوليو أغسطس سبتمبر أكتوبر نوفمبر ديسمبر'.split()),
 }
 
-CARD = '''    <article class="card">
-      <h3>{name}</h3>
-      <ul><li>{desc}</li></ul>
-      <div class="tags">{tags}</div>
-      <div class="links"><a href="{url}">{short}</a></div>
-    </article>
+# Same one-column ATS markup as the hand-written projects in cv-src/.
+CARD = '''  <article class="card">
+    <h3><span>{name}</span><span class="when">{when}</span></h3>
+    <p class="stack">{stack}</p>
+    <ul><li>{desc}</li></ul>
+    <p class="links"><a{attr} href="{url}">{short}</a></p>
+  </article>
 '''
 
 
@@ -38,12 +44,17 @@ def nice(name):
     return ' '.join(w if w.isupper() else w[:1].upper() + w[1:] for w in re.split(r'[-_]+', name))
 
 
-def card(repo, fallback):
-    tags = (repo.get('topics') or [])[:5] or [repo.get('language') or 'Code']
+def card(repo, fallback, attr, months):
+    stack = [repo['language']] if repo.get('language') else []
+    stack += [t for t in (repo.get('topics') or []) if t.lower() not in {s.lower() for s in stack}]
+    year, month = repo['created_at'][:7].split('-')
+    sep = '، ' if attr else ', '
     return CARD.format(
         name=html.escape(nice(repo['name'])),
+        when=f'{months[int(month) - 1]} {year}',
+        stack=html.escape(sep.join(stack[:5]) or 'Code'),
         desc=html.escape(repo.get('description') or fallback),
-        tags=''.join(f'<span class="tag">{html.escape(t)}</span>' for t in tags),
+        attr=attr,
         url=html.escape(repo['html_url']),
         short=html.escape(repo['html_url'].replace('https://', '')),
     )
@@ -53,16 +64,19 @@ def main():
     repos = [r for r in fetch_repos()
              if not r['fork'] and not r['archived'] and not r['private'] and r['name'].lower() not in SKIP]
     changed = False
-    for path, fallback in FILES.items():
+    for path, (fallback, attr, months) in FILES.items():
         with open(path, encoding='utf-8') as f:
             text = f.read()
-        known = {n.lower() for n in re.findall(r'github\.com/' + USER + r'/([A-Za-z0-9._-]+)"', text)}
+        if MARKER not in text:
+            raise SystemExit(f'{path}: AUTO-PROJECTS marker not found')
+        known = {n.lower() for n in re.findall(REPO_LINK, text)}
         new = [r for r in repos if r['name'].lower() not in known]
         if not new:
             continue
-        cards = ''.join(card(r, fallback) for r in new)
+        cards = ''.join(card(r, fallback, attr, months) for r in new)
         text = text.replace(MARKER, cards + MARKER, 1)
-        count = text.count('<article class="card">')
+        # Projects = distinct repos linked (one card may cover two repos, e.g. V1 & V2).
+        count = len({n.lower() for n in re.findall(REPO_LINK, text)})
         text = re.sub(r'<span class="pcount">\d+</span>', f'<span class="pcount">{count}</span>', text)
         with open(path, 'w', encoding='utf-8') as f:
             f.write(text)
